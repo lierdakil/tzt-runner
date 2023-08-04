@@ -51,7 +51,7 @@ StackOrErr
   ;
 
 Seq
-  : %non5 lbr Elts_ rbr { _2 }
+  : lbr Elts_ rbr { _2 }
   ;
 
 Elts_
@@ -66,21 +66,21 @@ Elts
   ;
 
 Elt
-  : Words { _1 }
+  : AnyWord { _1 }
   | Seq { _1.length > 0 ? `{ ${_1} }` : "{}" }
   ;
 
 Words
   : AnyWord Words { `${_1} ${_2}` }
-  | %left1 AnyWord { _1 }
+  | %non5 AnyWord { _1 }
   ;
 
 AnyWord
-  : %left1 word { _1 }
-  | %left1 code { _1 }
-  | %left1 lp { _1 }
-  | %left1 rp { _1 }
-  | %left1 parameter { _1 }
+  : word { _1 }
+  | code { _1 }
+  | lp { _1 }
+  | %non1 rp { _1 }
+  | parameter { _1 }
   ;
 
 Stack
