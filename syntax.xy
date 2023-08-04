@@ -18,7 +18,7 @@ lbr  /{/
 rbr  /}/
 lp /\(/ {text}
 rp /\)/ {text}
-word /[_a-zA-Z0-9\-\[\]]+|"[^"]*"/ { text }
+word /[_a-zA-Z0-9\-\[\]]+|"([^"]|\\")*"/ { text }
 
 %%
 
@@ -78,9 +78,20 @@ Words
 AnyWord
   : word { _1 }
   | code { _1 }
+  | input { _1 }
+  | output { _1 }
+  | other_contracts { _1 }
+  | amount { _1 }
+  | balance { _1 }
+  | chain_id { _1 }
+  | big_maps { _1 }
+  | now { _1 }
+  | self { _1 }
+  | parameter { _1 }
+  | sender { _1 }
+  | source { _1 }
   | lp { _1 }
   | %non1 rp { _1 }
-  | parameter { _1 }
   ;
 
 Stack
