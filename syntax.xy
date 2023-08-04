@@ -1,0 +1,116 @@
+/[ \t\r\n]/
+code /code/ {text}
+input /input/ {text}
+output /output/ {text}
+other_contracts /other_contracts/ {text}
+amount /amount/ {text}
+balance /balance/ {text}
+chain_id /chain_id/ {text}
+big_maps /big_maps/ {text}
+now /now/ {text}
+self /self/ {text}
+parameter /parameter/ {text}
+sender /sender/ {text}
+source /source/ {text}
+stack_elt /Stack_elt/
+semi /;/
+lbr  /{/
+rbr  /}/
+lp /\(/ {text}
+rp /\)/ {text}
+word /[_a-zA-Z0-9\-\[\]]+|"[^"]*"/ { text }
+
+%%
+
+E : Block E_ { [_1].concat(_2) }
+  ;
+
+E_ : semi E { _2 }
+   | semi %eof { [] }
+   | %eof { [] }
+   ;
+
+Block : code Seq { {code: _2} }
+      | input lbr Stack rbr { {input: _3} }
+      | output StackOrErr { {output: _2 } }
+      | other_contracts Seq { { other_contracts: _2 } }
+      | amount word { {amount: _2} }
+      | balance word { {balance: _2} }
+      | now word { {now: _2} }
+      | chain_id word { {chain_id: _2} }
+      | self word { {self: _2} }
+      | sender word { {sender: _2} }
+      | source word { {source: _2} }
+      | parameter Type { {parameter: _2} }
+      | big_maps Seq { {big_maps: _2} }
+      ;
+
+StackOrErr
+  : lp Words rp { { err: _2 } }
+  | lbr Stack rbr { { stack: _2 } }
+  ;
+
+Seq
+  : %non5 lbr Elts_ rbr { _2 }
+  ;
+
+Elts_
+  : Elts semi Elts_ { `${_1} ; ${_3}` }
+  | Elts { _1 }
+  | { "" }
+  ;
+
+Elts
+  : Elt Elts { `${_1} ${_2}` }
+  | Elt { _1 }
+  ;
+
+Elt
+  : Words { _1 }
+  | Seq { _1.length > 0 ? `{ ${_1} }` : "{}" }
+  ;
+
+Words
+  : AnyWord Words { `${_1} ${_2}` }
+  | %left1 AnyWord { _1 }
+  ;
+
+AnyWord
+  : %left1 word { _1 }
+  | %left1 code { _1 }
+  | %left1 lp { _1 }
+  | %left1 rp { _1 }
+  | %left1 parameter { _1 }
+  ;
+
+Stack
+  : StackElt semi Stack { [_1].concat(_3) }
+  | StackElt { [_1] }
+  | { [] }
+  ;
+
+StackElt
+  : stack_elt Type Value { { type: _2, val: _3 } }
+  ;
+
+Type
+  : word { _1 }
+  | chain_id { _1 }
+  | lp PType rp { `(${_2})` }
+  ;
+
+PType
+  : Type { _1 }
+  | Type PType { `${_1} ${_2}` }
+  ;
+
+Value
+  : word { _1 }
+  | lp PValue rp { `(${_2})` }
+  | Seq { _1.length > 0 ? `{ ${_1} }` : "{}" }
+  ;
+
+PValue
+  : Value { _1 }
+  | Value PValue { `${_1} ${_2}` }
+  ;
