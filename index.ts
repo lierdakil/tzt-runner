@@ -282,6 +282,7 @@ with ${out_err.val}`;
               `operator ${detail.instr} is undefined between ${args.join(
                 " and "
               )}`,
+              `operator ${detail.instr} is undefined on ${args}`,
               `wrong stack type for instruction ${detail.instr}: [${args}]`,
             ];
             break;
@@ -341,15 +342,17 @@ with ${out_err.val}`;
         unreachable(out_err, `Unknown error: ${JSON.stringify(out_err)}`);
     }
 
+    const x_oneline = x.replace(/\s+/g, ' ');
+
     if (Array.isArray(expected_error_line)) {
-      if (!expected_error_line.some((y) => x.includes(y))) {
+      if (!expected_error_line.some((y) => x_oneline.includes(y))) {
         console.log(x);
         throw new Error(
           `Could not find ${expected_error_line.join(" or ")} in output`
         );
       }
     } else {
-      if (!x.includes(expected_error_line)) {
+      if (!x_oneline.includes(expected_error_line)) {
         console.log(x);
         throw new Error(`Could not find ${expected_error_line} in output`);
       }
