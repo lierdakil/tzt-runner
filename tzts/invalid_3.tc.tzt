@@ -1,0 +1,3 @@
+code { LAMBDA int int { SELF; DROP } };
+input { };
+output (TCError (InvalidInstr SELF));

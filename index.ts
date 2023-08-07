@@ -11,7 +11,7 @@ const flags = parse(Deno.args, {
 
 for (const fn of flags._) {
   const txt = await Deno.readTextFile(fn);
-  console.log(`Testing ${fn}`)
+  console.log(`Testing ${fn}`);
   const tezos_protocol = flags.proto;
 
   const parser = new Parser();
@@ -315,6 +315,13 @@ with ${out_err.val}`;
             switch (detail.instr) {
               case "PAIR":
                 expected_error_line = "PAIR expects an argument of at least 2";
+                break;
+              case "DUP":
+                expected_error_line = "DUP n expects an argument of at least 1";
+                break;
+              case "SELF":
+                expected_error_line =
+                  "The SELF instruction cannot appear in a lambda.";
                 break;
               default:
                 throw new Error(
