@@ -5,10 +5,50 @@ import { Parser } from "./parser.js";
 import { parse } from "https://deno.land/std@0.194.0/flags/mod.ts";
 import PQueue from "https://deno.land/x/p_queue@1.0.1/mod.ts";
 
+interface StackElt {
+  type: string;
+  val: string;
+}
+
+type Err =
+  | { class: "Failed"; val: string }
+  | { class: "MutezOverflow"; i: string; j: string }
+  | { class: "MutezUnderflow"; i: string; j: string }
+  | { class: "GeneralOverflow"; i: string; j: string }
+  | { class: "TCError"; detail: TCError };
+
+type TCError =
+  | null
+  | { class: "TypeMismatch"; l: string; r: string }
+  | { class: "NoMatchingOverload"; instr: string; stack: StackElt[] }
+  | { class: "ValueError"; type: string; value: string }
+  | { class: "DeadCode"; instr: string }
+  | { class: "InvalidInstr"; instr: string };
+
+interface Res {
+  code: string;
+  input: StackElt[];
+  output: { err: Err } | { stack: StackElt[] };
+  amount?: string;
+  balance?: string;
+  source?: string;
+  sender?: string;
+  payer?: string;
+  self?: string;
+  now?: string;
+  parameter?: string;
+  big_maps?: string[];
+}
+
 const flags = parse(Deno.args, {
   string: ["proto", "_", "jobs"],
   boolean: ["tc_only", "hide_successes"],
-  default: { proto: "PtKathma", jobs: "1", tc_only: false, hide_successes: false },
+  default: {
+    proto: "PtKathma",
+    jobs: "1",
+    tc_only: false,
+    hide_successes: false,
+  },
 });
 
 const queue = new PQueue({
@@ -38,53 +78,36 @@ async function process(fn: string) {
     output.push(str);
   }
   const tc_only = fn.endsWith(".tc.tzt") && flags.tc_only;
-  const tc_only_flag = tc_only? "[only tc] " : "";
+  const tc_only_flag = tc_only ? "[only tc] " : "";
+  const script_path = await Deno.makeTempFile();
   try {
     const txt = await Deno.readTextFile(fn);
     const tezos_protocol = flags.proto;
 
     const parser = new Parser();
 
-    interface StackElt {
-      type: string;
-      val: string;
-    }
-
-    type Err =
-      | { class: "Failed"; val: string }
-      | { class: "MutezOverflow"; i: string; j: string }
-      | { class: "MutezUnderflow"; i: string; j: string }
-      | { class: "GeneralOverflow"; i: string; j: string }
-      | { class: "TCError"; detail: TCError };
-
-    type TCError =
-      | null
-      | { class: "TypeMismatch"; l: string; r: string }
-      | { class: "NoMatchingOverload"; instr: string; stack: StackElt[] }
-      | { class: "ValueError"; type: string; value: string }
-      | { class: "DeadCode"; instr: string }
-      | { class: "InvalidInstr"; instr: string };
-
-    interface Res {
-      code: string;
-      input: StackElt[];
-      output: { err: Err } | { stack: StackElt[] };
-      amount?: string;
-      balance?: string;
-      source?: string;
-      sender?: string;
-      payer?: string;
-      self?: string;
-      now?: string;
-      parameter?: string;
-    }
-
     const res: Res = (parser.parse(Lexer.lex(txt)) as Res[]).reduce(
       (prev, cur) => Object.assign(prev, cur),
       {}
     ) as Res;
 
-    const script_path = await Deno.makeTempFile();
+    const big_maps = new Map(
+      res.big_maps?.map((x) => {
+        const m = x.trim().match(/^Big_map\s+(\d+).*\{(.*)\}/);
+        if (!m) throw new Error(`Incorrect big_map syntax`);
+        const [_, num, content] = m;
+        return [num, content];
+      })
+    );
+
+    res.input = res.input.map(({type, val}) => {
+      if (trimParens(type).startsWith('big_map')) {
+        const new_val = big_maps.get(val.trim());
+        return {type, val: new_val != null ? `{ ${new_val} }` : val}
+      } else {
+        return {type, val};
+      }
+    })
 
     let input_stack: string;
     let parameter: string;
@@ -422,6 +445,8 @@ code { ${code} };
       Deno.stdout.writeSync(new TextEncoder().encode(output.join("\n") + "\n"));
     }
     console.error(e);
+  } finally {
+    Deno.removeSync(script_path);
   }
 }
 

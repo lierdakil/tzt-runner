@@ -53,7 +53,7 @@ Block : code Seq { {code: _2} }
       | sender word { {sender: _2} }
       | source word { {source: _2} }
       | parameter Type { {parameter: _2} }
-      | big_maps Seq { {big_maps: _2} }
+      | big_maps lbr Elts_ rbr { {big_maps: _3} }
       ;
 
 StackOrErr
@@ -80,13 +80,13 @@ TCError
   ;
 
 Seq
-  : lbr Elts_ rbr { _2 }
+  : lbr Elts_ rbr { _2.join(" ; ") }
   ;
 
 Elts_
-  : Elts semi Elts_ { `${_1} ; ${_3}` }
-  | Elts { _1 }
-  | { "" }
+  : Elts semi Elts_ { [_1].concat(_3) }
+  | Elts { [_1] }
+  | { [] }
   ;
 
 Elts
