@@ -1,0 +1,3 @@
+code { LSR };
+input { Stack_elt bytes 0x; Stack_elt unit Unit };
+output (TCError (NoMatchingOverload LSR { Stack_elt bytes 0x; Stack_elt unit Unit }))

@@ -1,0 +1,3 @@
+code { EQ };
+input {};
+output (TCError (NoMatchingOverload EQ {}))

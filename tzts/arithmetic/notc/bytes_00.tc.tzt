@@ -1,0 +1,4 @@
+code { BYTES } ;
+input { Stack_elt bytes 0x } ;
+output (TCError (NoMatchingOverload BYTES { Stack_elt unit Unit })) ;
+output (TCError _) ;

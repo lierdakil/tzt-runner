@@ -1,0 +1,3 @@
+code { NEG };
+input { Stack_elt unit Unit };
+output (TCError (NoMatchingOverload NEG { Stack_elt unit Unit }))

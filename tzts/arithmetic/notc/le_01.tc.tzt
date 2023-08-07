@@ -1,0 +1,3 @@
+code { LE };
+input {};
+output (TCError (NoMatchingOverload LE {}))

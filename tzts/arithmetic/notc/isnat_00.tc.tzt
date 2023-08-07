@@ -1,0 +1,3 @@
+code { ISNAT };
+input { Stack_elt bool False };
+output (TCError (NoMatchingOverload ISNAT {}))

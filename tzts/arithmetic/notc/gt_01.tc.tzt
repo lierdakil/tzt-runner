@@ -1,0 +1,3 @@
+code { GT };
+input {};
+output (TCError (NoMatchingOverload GT {}))

@@ -1,0 +1,3 @@
+code { LT };
+input { Stack_elt bls12_381_fr 0 };
+output (TCError (NoMatchingOverload LT { Stack_elt bls12_381_fr 0 }))

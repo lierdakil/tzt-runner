@@ -1,0 +1,6 @@
+code { MUL };
+input {
+  Stack_elt bls12_381_fr 1;
+  Stack_elt nat 0;
+};
+output { Stack_elt bls12_381_fr 0x0000000000000000000000000000000000000000000000000000000000000000 };

@@ -1,0 +1,3 @@
+code { SUB };
+input { Stack_elt unit Unit; Stack_elt unit Unit };
+output (TCError (NoMatchingOverload SUB { Stack_elt unit Unit; Stack_elt unit Unit }))

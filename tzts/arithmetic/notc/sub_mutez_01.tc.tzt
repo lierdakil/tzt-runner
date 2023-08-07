@@ -1,0 +1,3 @@
+code { SUB_MUTEZ };
+input { Stack_elt mutez 0 };
+output (TCError (NoMatchingOverload SUB_MUTEZ {}))

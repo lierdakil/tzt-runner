@@ -1,0 +1,6 @@
+code { MUL };
+input {
+  Stack_elt bls12_381_fr 0x04f2fd1cc5a4fc070968a2364a0bc41e08928f4aa917d034498f6a095c26b427;
+  Stack_elt int -1;
+};
+output { Stack_elt bls12_381_fr 0xfd0d02e3395b03f8f5f35bc9b898f934fd4512bf5ec069fefeed3220f780394c };

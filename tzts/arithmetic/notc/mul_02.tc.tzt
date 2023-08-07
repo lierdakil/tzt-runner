@@ -1,0 +1,3 @@
+code { MUL };
+input { };
+output (TCError (NoMatchingOverload MUL {}))

@@ -1,0 +1,4 @@
+code { NAT };
+input { Stack_elt unit Unit };
+output (TCError (NoMatchingOverload NAT { Stack_elt unit Unit })) ;
+output (TCError _) ;

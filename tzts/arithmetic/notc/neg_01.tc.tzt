@@ -1,0 +1,3 @@
+code { NEG };
+input {};
+output (TCError (NoMatchingOverload NEG {}))

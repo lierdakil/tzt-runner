@@ -1,0 +1,3 @@
+code { INT };
+input { Stack_elt bytes 0xff7f };
+output { Stack_elt int -129 };

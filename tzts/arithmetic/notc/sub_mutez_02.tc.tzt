@@ -1,0 +1,3 @@
+code { SUB_MUTEZ };
+input {};
+output (TCError (NoMatchingOverload SUB_MUTEZ {}))

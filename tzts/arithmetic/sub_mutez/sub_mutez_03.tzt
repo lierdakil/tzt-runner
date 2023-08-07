@@ -1,0 +1,3 @@
+code { SUB_MUTEZ };
+input { Stack_elt mutez 100500; Stack_elt mutez 101 };
+output { Stack_elt (option mutez) (Some 100399) }

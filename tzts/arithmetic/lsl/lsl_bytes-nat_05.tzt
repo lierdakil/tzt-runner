@@ -1,0 +1,3 @@
+code { LSL } ;
+input { Stack_elt bytes 0x; Stack_elt nat 1 } ;
+output { Stack_elt bytes 0x00 } ;

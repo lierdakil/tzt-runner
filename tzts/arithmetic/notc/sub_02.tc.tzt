@@ -1,0 +1,3 @@
+code { SUB };
+input { };
+output (TCError (NoMatchingOverload SUB {}))
