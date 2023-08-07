@@ -7,8 +7,8 @@ import PQueue from "https://deno.land/x/p_queue@1.0.1/mod.ts";
 
 const flags = parse(Deno.args, {
   string: ["proto", "_", "jobs"],
-  boolean: ["tc_only"],
-  default: { proto: "PtKathma", jobs: "1", tc_only: false },
+  boolean: ["tc_only", "hide_successes"],
+  default: { proto: "PtKathma", jobs: "1", tc_only: false, hide_successes: false },
 });
 
 const queue = new PQueue({
@@ -316,8 +316,7 @@ code { ${code} };
           expected_error_line = `unexpected arithmetic overflow`;
           break;
         case "Failed":
-          expected_error_line = `script reached FAILWITH instruction
-with ${out_err.val}`;
+          expected_error_line = `script reached FAILWITH instruction with ${out_err.val}`;
           break;
         case "TCError": {
           const { detail } = out_err;
@@ -411,7 +410,9 @@ with ${out_err.val}`;
         }
       }
     }
-    console.log(`${tc_only_flag}${fn} %c✔`, "color: green");
+    if (!flags.hide_successes) {
+      console.log(`${tc_only_flag}${fn} %c✔`, "color: green");
+    }
     if (output.length > 0) {
       Deno.stdout.writeSync(new TextEncoder().encode(output.join("\n") + "\n"));
     }
