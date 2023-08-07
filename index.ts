@@ -100,14 +100,14 @@ async function process(fn: string) {
       })
     );
 
-    res.input = res.input.map(({type, val}) => {
-      if (trimParens(type).startsWith('big_map')) {
+    res.input = res.input.map(({ type, val }) => {
+      if (trimParens(type).startsWith("big_map")) {
         const new_val = big_maps.get(val.trim());
-        return {type, val: new_val != null ? `{ ${new_val} }` : val}
+        return { type, val: new_val != null ? `{ ${new_val} }` : val };
       } else {
-        return {type, val};
+        return { type, val };
       }
-    })
+    });
 
     let input_stack: string;
     let parameter: string;
@@ -349,13 +349,18 @@ code { ${code} };
               break;
             case "NoMatchingOverload": {
               const args = detail.stack.map((x) => x.type);
-              expected_error_line = [
-                `operator ${detail.instr} is undefined between ${args.join(
-                  " and "
-                )}`,
-                `operator ${detail.instr} is undefined on ${args}`,
-                `wrong stack type for instruction ${detail.instr}: [${args}]`,
-              ];
+              if (detail.instr == "BYTES" || detail.instr == "NAT") {
+                // Like, seriously, WTF?
+                expected_error_line = `invalid primitive ${detail.instr}`;
+              } else {
+                expected_error_line = [
+                  `operator ${detail.instr} is undefined between ${args.join(
+                    " and "
+                  )}`,
+                  `operator ${detail.instr} is undefined on ${args}`,
+                  `wrong stack type for instruction ${detail.instr}: [${args}]`,
+                ];
+              }
               break;
             }
             case "ValueError":
