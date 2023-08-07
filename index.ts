@@ -14,10 +14,25 @@ interface StackElt {
   val: string;
 }
 
+type Err =
+  | { class: "Failed"; val: string }
+  | { class: "MutezOverflow"; i: string; j: string }
+  | { class: "MutezUnderflow"; i: string; j: string }
+  | { class: "GeneralOverflow"; i: string; j: string }
+  | { class: "TCError"; detail: TCError };
+
+type TCError =
+  | null
+  | { class: "TypeMismatch"; l: string; r: string }
+  | { class: "NoMatchingOverload"; instr: string; stack: StackElt[] }
+  | { class: "ValueError"; type: string; value: string }
+  | { class: "DeadCode"; instr: string }
+  | { class: "InvalidInstr"; instr: string };
+
 interface Res {
   code: string;
   input: StackElt[];
-  output: { err: string } | { stack: StackElt[] };
+  output: { err: Err } | { stack: StackElt[] };
   amount?: string;
   balance?: string;
   source?: string;
@@ -171,18 +186,18 @@ code { ${code} };
     throw new Error(`Expected ${expected_out_val}, but got ${out_val.trim()}`);
   }
 } else {
-  const code = res.output.err.startsWith("Failed ")
-    ? `${init_code}; ${res.code}`
-    : `${init_code}; ${res.code}; FAIL`;
+  const code =
+    res.output.err?.class == "Failed"
+      ? `${init_code}; ${res.code}`
+      : `${init_code}; ${res.code}; FAIL`;
 
-  await Deno.writeTextFile(
-    script_path,
-    `
+  const contract_text = `
 parameter ${parameter};
 storage unit;
 code { ${code} };
-`
-  );
+`;
+
+  await Deno.writeTextFile(script_path, contract_text);
 
   const args = [
     "--mode",
@@ -213,20 +228,20 @@ code { ${code} };
 
   const x = new TextDecoder().decode(out.stderr);
 
-  const out_err = res.output.err.split(" ");
+  const out_err = res.output.err;
 
-  let expected_error_line: string;
+  let expected_error_line: string | string[];
 
-  switch (out_err[0]) {
+  switch (out_err.class) {
     case "MutezOverflow": {
-      const l = formatMutez(out_err[1]);
-      const r = formatMutez(out_err[2]);
+      const l = formatMutez(out_err.i);
+      const r = formatMutez(out_err.j);
       expected_error_line = `Overflowing addition of ${l} tez and ${r} tez`;
       break;
     }
     case "MutezUnderflow": {
-      const l = formatMutez(out_err[1]);
-      const r = formatMutez(out_err[2]);
+      const l = formatMutez(out_err.i);
+      const r = formatMutez(out_err.j);
       expected_error_line = `Underflowing subtraction of ${l} tez and ${r} tez`;
       break;
     }
@@ -235,15 +250,80 @@ code { ${code} };
       break;
     case "Failed":
       expected_error_line = `script reached FAILWITH instruction
-with ${out_err[1]}`;
+with ${out_err.val}`;
       break;
+    case "TCError": {
+      const { detail } = out_err;
+      switch (detail?.class) {
+        case undefined:
+          expected_error_line = "Ill typed contract";
+          break;
+        case "NoMatchingOverload": {
+          const args = detail.stack.map((x) => x.type);
+          expected_error_line = [
+            `operator ${detail.instr} is undefined between ${args.join(
+              " and "
+            )}`,
+            `wrong stack type for instruction ${detail.instr}: [${args}]`,
+          ];
+          break;
+        }
+        case "ValueError":
+          expected_error_line = `value ${detail.value} is invalid for type ${detail.type}`;
+          break;
+        case "TypeMismatch":
+          expected_error_line = `Type ${detail.l} is not compatible with type ${detail.r}`;
+          break;
+        case "DeadCode": {
+          const match_res = x.match(/At line (\d+) characters (\d+) to (\d+),/);
+          if (!match_res)
+            throw new Error("No position information in error message");
+          const line = parseInt(match_res[1]);
+          const pos1 = parseInt(match_res[2]);
+          const pos2 = parseInt(match_res[3]);
+          const str = contract_text.split("\n")[line - 1].slice(pos1, pos2);
+          if (str !== detail.instr) {
+            throw new Error(
+              `Expected ${detail.instr}, but the failing instruction is ${str}`
+            );
+          }
+          expected_error_line =
+            "The FAIL instruction must appear in a tail position";
+          break;
+        }
+        case "InvalidInstr":
+          switch (detail.instr) {
+            case "PAIR":
+              expected_error_line = "PAIR expects an argument of at least 2";
+              break;
+            default:
+              throw new Error(`Unhandled invalid instruction: ${detail.instr}`);
+          }
+          break;
+        default:
+          unreachable(
+            detail,
+            `Unknown typechecker error: ${JSON.stringify(out_err.detail)}`
+          );
+      }
+      break;
+    }
     default:
-      throw new Error(`Unknown error: ${out_err}`);
+      unreachable(out_err, `Unknown error: ${JSON.stringify(out_err)}`);
   }
 
-  if (!x.includes(expected_error_line)) {
-    console.log(x);
-    throw new Error(`Could not find ${expected_error_line} in output`);
+  if (Array.isArray(expected_error_line)) {
+    if (!expected_error_line.some((y) => x.includes(y))) {
+      console.log(x);
+      throw new Error(
+        `Could not find ${expected_error_line.join(" or ")} in output`
+      );
+    }
+  } else {
+    if (!x.includes(expected_error_line)) {
+      console.log(x);
+      throw new Error(`Could not find ${expected_error_line} in output`);
+    }
   }
 }
 
@@ -253,4 +333,8 @@ function formatMutez(s: string) {
   } else {
     return "0." + s.padStart(6, "0");
   }
+}
+
+function unreachable(_: never, msg: string): never {
+  throw new Error(msg);
 }

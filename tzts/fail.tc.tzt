@@ -1,0 +1,3 @@
+code { FAILWITH; CAR } ;
+input { Stack_elt unit Unit } ;
+output (TCError (DeadCode FAILWITH)) ;

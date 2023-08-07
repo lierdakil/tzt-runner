@@ -1,0 +1,3 @@
+code { IF { PUSH int 1 } { PUSH nat 2 } } ;
+input { Stack_elt bool False } ;
+output (TCError (TypeMismatch int nat)) ;

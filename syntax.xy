@@ -12,6 +12,17 @@ self /self/ {text}
 parameter /parameter/ {text}
 sender /sender/ {text}
 source /source/ {text}
+failed /Failed/ {text}
+mutezOverflow /MutezOverflow/ {text}
+mutezUnderflow /MutezUnderflow/ {text}
+generalOverflow /GeneralOverflow/ {text}
+tcError /TCError/ {text}
+underscore /_/ {text}
+typeMismatch /TypeMismatch/ {text}
+noMatchingOverload /NoMatchingOverload/ {text}
+valueError /ValueError/ {text}
+deadCode /DeadCode/ {text}
+invalidInstr /InvalidInstr/ {text}
 stack_elt /Stack_elt/
 semi /;/
 lbr  /{/
@@ -46,8 +57,26 @@ Block : code Seq { {code: _2} }
       ;
 
 StackOrErr
-  : lp Words rp { { err: _2 } }
+  : lp Err rp { { err: _2 } }
   | lbr Stack rbr { { stack: _2 } }
+  ;
+
+Err
+  : failed Value { { class: _1, val: _2 } }
+  | mutezOverflow Value Value { { class: _1, i: _2, j: _3 } }
+  | mutezUnderflow Value Value { { class: _1, i: _2, j: _3 } }
+  | generalOverflow Value Value { { class: _1, i: _2, j: _3 } }
+  | tcError TCError { { class: _1, detail: _2 } }
+  ;
+
+TCError
+  : underscore { null }
+  | typeMismatch Type Type { { class: _1, l: _2, r: _3 } }
+  | noMatchingOverload word lbr Stack rbr { { class: _1, instr: _2, stack: _4 } }
+  | valueError Type Value { { class: _1, type: _2, value: _3 } }
+  | deadCode word { { class: _1, instr: _2 } }
+  | invalidInstr word { { class: _1, instr: _2 } }
+  | lp TCError rp { _2 }
   ;
 
 Seq
@@ -91,6 +120,17 @@ AnyWord
   | sender { _1 }
   | source { _1 }
   | lp { _1 }
+  | failed { _1 }
+  | mutezOverflow { _1 }
+  | mutezUnderflow { _1 }
+  | generalOverflow { _1 }
+  | tcError { _1 }
+  | underscore { _1 }
+  | typeMismatch { _1 }
+  | noMatchingOverload { _1 }
+  | valueError { _1 }
+  | deadCode { _1 }
+  | invalidInstr { _1 }
   | %non1 rp { _1 }
   ;
 
