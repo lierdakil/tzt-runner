@@ -193,12 +193,12 @@ code { ${code} };
       .split("\n");
 
     const expected_regex = new RegExp(
-      expected_out_val
+      `^${expected_out_val
         .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
-        .replaceAll("_", ".*?"),
+        .replaceAll("_", ".*?")}$`,
       "u"
     );
-    if (out_val.trim().match(new RegExp(expected_regex)) == null) {
+    if (out_val.trim().match(expected_regex) == null) {
       throw new Error(
         `Expected ${expected_out_val}, but got ${out_val.trim()}`
       );
