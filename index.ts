@@ -23,7 +23,8 @@ type TCError =
   | { class: "NoMatchingOverload"; instr: string; stack: StackElt[] }
   | { class: "ValueError"; type: string; value: string }
   | { class: "DeadCode"; instr: string }
-  | { class: "InvalidInstr"; instr: string };
+  | { class: "InvalidInstr"; instr: string }
+  | { class: "BadType"; type: string };
 
 interface Res {
   code: string;
@@ -410,6 +411,24 @@ code { ${code} };
                   );
               }
               break;
+            case "BadType": {
+              const ty = trimParens(detail.type);
+              if (ty.startsWith("contract")) {
+                expected_error_line = "contract type forbidden";
+              } else if (
+                ty.startsWith("big_map") ||
+                ty.startsWith("sapling_state")
+              ) {
+                expected_error_line =
+                  "big_map or sapling_state type not expected";
+              } else {
+                expected_error_line = [
+                  `${detail.type} type not expected`,
+                  `${detail.type} type forbidden`,
+                ];
+              }
+              break;
+            }
             default:
               unreachable(
                 detail,
@@ -455,6 +474,11 @@ code { ${code} };
   }
 }
 
-function trimParens(str: string) {
-  return str.trim().replace(/^\((.*)\)$/, "$1");
+function trimParens(str: string): string {
+  const t = str.trim();
+  if (t.startsWith("(") && t.endsWith(")")) {
+    return trimParens(t.replace(/^\((.*)\)$/, "$1"));
+  } else {
+    return t;
+  }
 }

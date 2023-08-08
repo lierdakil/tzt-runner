@@ -22,6 +22,7 @@ typeMismatch /TypeMismatch/ {text}
 noMatchingOverload /NoMatchingOverload/ {text}
 valueError /ValueError/ {text}
 deadCode /DeadCode/ {text}
+badType /BadType/ {text}
 invalidInstr /InvalidInstr/ {text}
 stack_elt /Stack_elt/
 semi /;/
@@ -76,6 +77,7 @@ TCError
   | valueError Type Value { { class: _1, type: _2, value: _3 } }
   | deadCode word { { class: _1, instr: _2 } }
   | invalidInstr word { { class: _1, instr: _2 } }
+  | badType Type { { class: _1, type: _2 } }
   | lp TCError rp { _2 }
   ;
 
@@ -130,6 +132,7 @@ AnyWord
   | noMatchingOverload { _1 }
   | valueError { _1 }
   | deadCode { _1 }
+  | badType { _1 }
   | invalidInstr { _1 }
   | %non1 rp { _1 }
   ;

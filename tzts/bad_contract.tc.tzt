@@ -1,0 +1,3 @@
+code { APPLY } ;
+input { Stack_elt (contract nat) {} ; Stack_elt (lambda (pair (contract nat) int) nat) { DROP ; PUSH nat 1 } } ;
+output (TCError (BadType (contract nat)))
