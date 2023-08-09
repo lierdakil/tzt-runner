@@ -34,7 +34,6 @@ interface Res {
   balance?: string;
   source?: string;
   sender?: string;
-  payer?: string;
   self?: string;
   now?: string;
   parameter?: string;
@@ -43,7 +42,7 @@ interface Res {
 
 const flags = parse(Deno.args, {
   string: ["proto", "_", "jobs"],
-  boolean: ["tc_only", "hide_successes"],
+  boolean: ["tc_only", "hide_successes", "debug"],
   default: {
     proto: "PtKathma",
     jobs: "1",
@@ -80,7 +79,6 @@ async function process(fn: string) {
   }
   const tc_only = fn.endsWith(".tc.tzt") && flags.tc_only;
   const tc_only_flag = tc_only ? "[only tc] " : "";
-  const script_path = await Deno.makeTempFile();
   try {
     const txt = await Deno.readTextFile(fn);
     const tezos_protocol = flags.proto;
@@ -143,16 +141,23 @@ async function process(fn: string) {
       res.amount != null ? ["--amount", formatMutez(res.amount)] : [];
     const balance =
       res.balance != null ? ["--balance", formatMutez(res.balance)] : [];
-    const source =
-      res.source != null ? ["--source", res.source.replaceAll('"', "")] : [];
     const payer =
-      res.payer != null ? ["--payer", res.payer.replaceAll('"', "")] : [];
+      res.source != null ? ["--payer", res.source.replaceAll('"', "")] : [];
     const sender =
-      res.sender != null ? ["--payer", res.sender.replaceAll('"', "")] : [];
+      res.sender != null ? ["--source", res.sender.replaceAll('"', "")] : [];
     const self =
       res.self != null ? ["--self-address", res.self.replaceAll('"', "")] : [];
     const now = res.now != null ? ["--now", res.now] : [];
-    const extraArgs = [amount, balance, source, payer, self, now, sender];
+    const extraArgs = [
+      amount,
+      balance,
+      payer,
+      self,
+      now,
+      sender,
+    ].flat();
+
+    let init_storage: string;
 
     if ("stack" in res.output) {
       let storage: string;
@@ -174,8 +179,6 @@ async function process(fn: string) {
           }
         }
       }
-
-      let init_storage: string;
 
       if (res.output.stack.length == 0) {
         storage = "unit";
@@ -204,56 +207,25 @@ async function process(fn: string) {
 
       const code = `${init_code}; ${code_inner} ${deinit_code}; NIL operation; PAIR`;
 
-      await Deno.writeTextFile(
-        script_path,
-        `
-parameter ${parameter};
-storage ${storage};
-code { ${code} };
-`
-      );
-
-      const args = tc_only
-        ? [
-            "--mode",
-            "mockup",
-            "--protocol",
-            tezos_protocol,
-            "typecheck",
-            "script",
-            script_path,
-          ]
-        : [
-            "--mode",
-            "mockup",
-            "--protocol",
-            tezos_protocol,
-            "run",
-            "script",
-            script_path,
-            "on",
-            "storage",
-            init_storage,
-            "and",
-            "input",
-            input_stack,
-          ].concat(...extraArgs);
-
-      const cmd = new Deno.Command("octez-client", {
-        args,
+      const out = await runOctezClient({
+        code,
+        extraArgs,
+        init_storage,
+        input_stack,
+        parameter,
+        storage,
+        tc_only,
+        tezos_protocol,
+        debug: flags.debug,
       });
 
-      const out = await cmd.output();
-
       if (out.code !== 0) {
-        log(new TextDecoder().decode(out.stdout));
-        log(new TextDecoder().decode(out.stderr));
+        log(out.stdout);
+        log(out.stderr);
         throw new Error("Unexpected error");
       }
 
-      const [_, out_val, ..._rest] = new TextDecoder()
-        .decode(out.stdout)
-        .split("\n");
+      const [_, out_val, ..._rest] = out.stdout.split("\n");
 
       const expected_regex = new RegExp(
         `^${expected_out_val
@@ -272,52 +244,24 @@ code { ${code} };
           ? `${init_code}; ${res.code}`
           : `${init_code}; ${res.code}; FAIL`;
 
-      const contract_text = `
-parameter ${parameter};
-storage unit;
-code { ${code} };
-`;
-
-      await Deno.writeTextFile(script_path, contract_text);
-
-      const args = tc_only
-        ? [
-            "--mode",
-            "mockup",
-            "--protocol",
-            tezos_protocol,
-            "typecheck",
-            "script",
-            script_path,
-          ]
-        : [
-            "--mode",
-            "mockup",
-            "--protocol",
-            tezos_protocol,
-            "run",
-            "script",
-            script_path,
-            "on",
-            "storage",
-            "Unit",
-            "and",
-            "input",
-            input_stack,
-          ].concat(...extraArgs);
-
-      const cmd = new Deno.Command("octez-client", {
-        args,
+      const out = await runOctezClient({
+        code,
+        extraArgs,
+        init_storage: "Unit",
+        input_stack,
+        parameter,
+        storage: "unit",
+        tc_only,
+        tezos_protocol,
+        debug: flags.debug,
       });
 
-      const out = await cmd.output();
-
       if (out.code == 0) {
-        log(new TextDecoder().decode(out.stdout));
+        log(out.stdout);
         throw new Error("Unexpected success");
       }
 
-      const x = new TextDecoder().decode(out.stderr);
+      const x = out.stderr;
 
       const out_err = res.output.err;
 
@@ -381,7 +325,9 @@ code { ${code} };
               const line = parseInt(match_res[1]);
               const pos1 = parseInt(match_res[2]);
               const pos2 = parseInt(match_res[3]);
-              const str = contract_text.split("\n")[line - 1].slice(pos1, pos2);
+              const str = out.contract_text
+                .split("\n")
+                [line - 1].slice(pos1, pos2);
               if (str !== detail.instr) {
                 throw new Error(
                   `Expected ${detail.instr}, but the failing instruction is ${str}`
@@ -396,6 +342,10 @@ code { ${code} };
                 case "PAIR":
                   expected_error_line =
                     "PAIR expects an argument of at least 2";
+                  break;
+                case "UNPAIR":
+                  expected_error_line =
+                    "UNPAIR expects an argument of at least 2";
                   break;
                 case "DUP":
                   expected_error_line =
@@ -469,16 +419,81 @@ code { ${code} };
       Deno.stdout.writeSync(new TextEncoder().encode(output.join("\n") + "\n"));
     }
     console.error(e);
-  } finally {
-    Deno.removeSync(script_path);
   }
 }
 
 function trimParens(str: string): string {
-  const t = str.trim();
-  if (t.startsWith("(") && t.endsWith(")")) {
-    return trimParens(t.replace(/^\((.*)\)$/, "$1"));
+  const t = str.trim().match(/^\((.*)\)$/);
+  if (t != null) {
+    return trimParens(t[1]);
   } else {
-    return t;
+    return str;
   }
+}
+
+interface OctezClientParams {
+  parameter: string;
+  storage: string;
+  code: string;
+  tc_only: boolean;
+  tezos_protocol: string;
+  init_storage: string;
+  input_stack: string;
+  extraArgs: string[];
+  debug: boolean;
+}
+
+interface OctezResult {
+  contract_text: string;
+  stdout: string;
+  stderr: string;
+  code: number;
+}
+
+async function runOctezClient(p: OctezClientParams): Promise<OctezResult> {
+  const contract_text = `
+parameter ${p.parameter};
+storage ${p.storage};
+code { ${p.code} };
+`;
+  const script = `text:${contract_text}`;
+
+  const args = p.tc_only
+    ? [
+        "--mode",
+        "mockup",
+        "--protocol",
+        p.tezos_protocol,
+        "typecheck",
+        "script",
+        script,
+      ]
+    : [
+        "--mode",
+        "mockup",
+        "--protocol",
+        p.tezos_protocol,
+        "run",
+        "script",
+        script,
+        "on",
+        "storage",
+        p.init_storage,
+        "and",
+        "input",
+        p.input_stack,
+      ].concat(...p.extraArgs);
+
+  const cmd = new Deno.Command("octez-client", {
+    args,
+  });
+
+  const out = await cmd.output();
+  const stdout = new TextDecoder().decode(out.stdout);
+  const stderr = new TextDecoder().decode(out.stderr);
+  if (p.debug) {
+    console.log(out.stdout);
+    console.log(out.stderr);
+  }
+  return { contract_text, stdout, stderr, code: out.code };
 }

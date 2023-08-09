@@ -1,0 +1,3 @@
+code { UNPAIR 0 };
+input { Stack_elt (pair int int) (Pair 1 2) };
+output (TCError (InvalidInstr UNPAIR));
