@@ -44,7 +44,7 @@ const flags = parse(Deno.args, {
   string: ["proto", "_", "jobs"],
   boolean: ["tc_only", "hide_successes", "debug"],
   default: {
-    proto: "PtKathma",
+    proto: "PtNairob",
     jobs: "1",
     tc_only: false,
     hide_successes: false,
