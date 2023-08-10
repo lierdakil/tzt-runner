@@ -26,11 +26,15 @@ badType /BadType/ {text}
 invalidInstr /InvalidInstr/ {text}
 stack_elt /Stack_elt/
 semi /;/
+colon /:/
+comma /,/
 lbr  /{/
 rbr  /}/
+lbrk  /\[/
+rbrk  /\]/
 lp /\(/ {text}
 rp /\)/ {text}
-word /[_a-zA-Z0-9\-\[\]]+|"([^\\"]|\\.)*"/ { text }
+word /[_a-zA-Z0-9\-]+|"([^\\"]|\\.)*"/ { text }
 
 %%
 
@@ -73,7 +77,7 @@ Err
 TCError
   : underscore { null }
   | typeMismatch Type Type { { class: _1, l: _2, r: _3 } }
-  | noMatchingOverload word lbr Stack rbr { { class: _1, instr: _2, stack: _4 } }
+  | noMatchingOverload word lbrk StackType rbrk { { class: _1, instr: _2, stack: _4 } }
   | valueError Type Value { { class: _1, type: _2, value: _3 } }
   | deadCode word { { class: _1, instr: _2 } }
   | invalidInstr word { { class: _1, instr: _2 } }
@@ -141,6 +145,17 @@ Stack
   : StackElt semi Stack { [_1].concat(_3) }
   | StackElt { [_1] }
   | { [] }
+  ;
+
+StackType
+  : PType StackTypeSep StackType { [_1].concat(_3) }
+  | PType { [_1] }
+  | { [] }
+  ;
+
+StackTypeSep
+  : comma
+  | colon
   ;
 
 StackElt

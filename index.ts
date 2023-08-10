@@ -293,7 +293,7 @@ async function process(fn: string) {
               expected_error_line = "Ill typed contract";
               break;
             case "NoMatchingOverload": {
-              const args = detail.stack.map((x) => x.type);
+              const args = detail.stack;
               if (detail.instr == "BYTES" || detail.instr == "NAT") {
                 // Like, seriously, WTF?
                 expected_error_line = `invalid primitive ${detail.instr}`;
@@ -303,7 +303,8 @@ async function process(fn: string) {
                     " and "
                   )}`,
                   `operator ${detail.instr} is undefined on ${args}`,
-                  `wrong stack type for instruction ${detail.instr}: [${args}]`,
+                  `wrong stack type for instruction ${detail.instr}: []`,
+                  `wrong stack type for instruction ${detail.instr}: [${args}`,
                 ];
               }
               break;

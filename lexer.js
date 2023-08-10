@@ -5,35 +5,39 @@ export const TokenType = {
   Tok_word: 1,
   Tok_underscore: 2,
   Tok_semi: 3,
-  Tok_lbr: 4,
-  Tok_rbr: 5,
-  Tok_lp: 6,
-  Tok_rp: 7,
-  Tok_stack_elt: 8,
-  Tok_invalidInstr: 9,
-  Tok_badType: 10,
-  Tok_deadCode: 11,
-  Tok_valueError: 12,
-  Tok_noMatchingOverload: 13,
-  Tok_typeMismatch: 14,
-  Tok_tcError: 15,
-  Tok_generalOverflow: 16,
-  Tok_mutezUnderflow: 17,
-  Tok_mutezOverflow: 18,
-  Tok_failed: 19,
-  Tok_parameter: 20,
-  Tok_source: 21,
-  Tok_sender: 22,
-  Tok_self: 23,
-  Tok_now: 24,
-  Tok_big_maps: 25,
-  Tok_balance: 26,
-  Tok_amount: 27,
-  Tok_other_contracts: 28,
-  Tok_output: 29,
-  Tok_input: 30,
-  Tok_chain_id: 31,
-  Tok_code: 32
+  Tok_colon: 4,
+  Tok_comma: 5,
+  Tok_lbr: 6,
+  Tok_rbr: 7,
+  Tok_lbrk: 8,
+  Tok_rbrk: 9,
+  Tok_lp: 10,
+  Tok_rp: 11,
+  Tok_stack_elt: 12,
+  Tok_invalidInstr: 13,
+  Tok_badType: 14,
+  Tok_deadCode: 15,
+  Tok_valueError: 16,
+  Tok_noMatchingOverload: 17,
+  Tok_typeMismatch: 18,
+  Tok_tcError: 19,
+  Tok_generalOverflow: 20,
+  Tok_mutezUnderflow: 21,
+  Tok_mutezOverflow: 22,
+  Tok_failed: 23,
+  Tok_parameter: 24,
+  Tok_source: 25,
+  Tok_sender: 26,
+  Tok_self: 27,
+  Tok_now: 28,
+  Tok_big_maps: 29,
+  Tok_balance: 30,
+  Tok_amount: 31,
+  Tok_other_contracts: 32,
+  Tok_output: 33,
+  Tok_input: 34,
+  Tok_chain_id: 35,
+  Tok_code: 36
 }
 
 export function tokToStr(x) {
@@ -42,35 +46,39 @@ export function tokToStr(x) {
     case 1: return 'word'
     case 2: return 'underscore'
     case 3: return 'semi'
-    case 4: return 'lbr'
-    case 5: return 'rbr'
-    case 6: return 'lp'
-    case 7: return 'rp'
-    case 8: return 'stack_elt'
-    case 9: return 'invalidInstr'
-    case 10: return 'badType'
-    case 11: return 'deadCode'
-    case 12: return 'valueError'
-    case 13: return 'noMatchingOverload'
-    case 14: return 'typeMismatch'
-    case 15: return 'tcError'
-    case 16: return 'generalOverflow'
-    case 17: return 'mutezUnderflow'
-    case 18: return 'mutezOverflow'
-    case 19: return 'failed'
-    case 20: return 'parameter'
-    case 21: return 'source'
-    case 22: return 'sender'
-    case 23: return 'self'
-    case 24: return 'now'
-    case 25: return 'big_maps'
-    case 26: return 'balance'
-    case 27: return 'amount'
-    case 28: return 'other_contracts'
-    case 29: return 'output'
-    case 30: return 'input'
-    case 31: return 'chain_id'
-    case 32: return 'code'
+    case 4: return 'colon'
+    case 5: return 'comma'
+    case 6: return 'lbr'
+    case 7: return 'rbr'
+    case 8: return 'lbrk'
+    case 9: return 'rbrk'
+    case 10: return 'lp'
+    case 11: return 'rp'
+    case 12: return 'stack_elt'
+    case 13: return 'invalidInstr'
+    case 14: return 'badType'
+    case 15: return 'deadCode'
+    case 16: return 'valueError'
+    case 17: return 'noMatchingOverload'
+    case 18: return 'typeMismatch'
+    case 19: return 'tcError'
+    case 20: return 'generalOverflow'
+    case 21: return 'mutezUnderflow'
+    case 22: return 'mutezOverflow'
+    case 23: return 'failed'
+    case 24: return 'parameter'
+    case 25: return 'source'
+    case 26: return 'sender'
+    case 27: return 'self'
+    case 28: return 'now'
+    case 29: return 'big_maps'
+    case 30: return 'balance'
+    case 31: return 'amount'
+    case 32: return 'other_contracts'
+    case 33: return 'output'
+    case 34: return 'input'
+    case 35: return 'chain_id'
+    case 36: return 'code'
   }
 }
 
@@ -120,7 +128,7 @@ export function *lex(input, debug = false) {
     let buf = ""
     let tmp = ""
     while (curSt >= 0) {
-      if ([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,27,28,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219].includes(curSt)) {
+      if ([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,31,32,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223].includes(curSt)) {
         buf += tmp
         tmp = ""
         accSt = curSt
@@ -197,524 +205,503 @@ export function *lex(input, debug = false) {
         } else if (curCh === ';') {
           curSt = 21
           continue
-        } else if (curCh === '{') {
+        } else if (curCh === ':') {
           curSt = 22
           continue
-        } else if (curCh === '}') {
+        } else if (curCh === ',') {
           curSt = 23
           continue
-        } else if (curCh === '(') {
+        } else if (curCh === '{') {
           curSt = 24
           continue
-        } else if (curCh === ')') {
+        } else if (curCh === '}') {
           curSt = 25
           continue
-        } else if (curCh === '"') {
+        } else if (curCh === '[') {
           curSt = 26
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+        } else if (curCh === ']') {
           curSt = 27
+          continue
+        } else if (curCh === '(') {
+          curSt = 28
+          continue
+        } else if (curCh === ')') {
+          curSt = 29
+          continue
+        } else if (curCh === '"') {
+          curSt = 30
+          continue
+        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 2:
         if (curCh === 'o') {
-          curSt = 210
+          curSt = 214
           continue
         } else if (curCh === 'h') {
-          curSt = 211
+          curSt = 215
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 3:
         if (curCh === 'n') {
-          curSt = 206
+          curSt = 210
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 4:
         if (curCh === 'u') {
-          curSt = 187
+          curSt = 191
           continue
         } else if (curCh === 't') {
-          curSt = 188
+          curSt = 192
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 5:
         if (curCh === 'm') {
-          curSt = 182
+          curSt = 186
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 6:
         if (curCh === 'a') {
-          curSt = 169
+          curSt = 173
           continue
         } else if (curCh === 'i') {
-          curSt = 170
+          curSt = 174
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 7:
         if (curCh === 'o') {
-          curSt = 167
+          curSt = 171
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 8:
         if (curCh === 'e') {
-          curSt = 155
+          curSt = 159
           continue
         } else if (curCh === 'o') {
-          curSt = 156
+          curSt = 160
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 9:
         if (curCh === 'a') {
-          curSt = 147
+          curSt = 151
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 10:
         if (curCh === 'a') {
-          curSt = 142
+          curSt = 146
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 11:
         if (curCh === 'u') {
-          curSt = 121
+          curSt = 125
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 12:
         if (curCh === 'e') {
-          curSt = 107
+          curSt = 111
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 13:
         if (curCh === 'C') {
-          curSt = 90
+          curSt = 94
           continue
         } else if (curCh === 'y') {
-          curSt = 91
+          curSt = 95
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 14:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 15:
         if (curCh === 'o') {
-          curSt = 73
+          curSt = 77
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 16:
         if (curCh === 'a') {
-          curSt = 64
+          curSt = 68
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 17:
         if (curCh === 'e') {
-          curSt = 57
+          curSt = 61
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 18:
         if (curCh === 'a') {
-          curSt = 51
+          curSt = 55
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 19:
         if (curCh === 'n') {
-          curSt = 40
+          curSt = 44
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 20:
         if (curCh === 't') {
+          curSt = 36
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
+          continue
+        }
+        break
+      case 30:
+        if (curCh === '"') {
           curSt = 32
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
-          continue
-        }
-        break
-      case 26:
-        if (curCh === '"') {
-          curSt = 28
-          continue
         } else if (curCh === '\\') {
-          curSt = 29
-          continue
-        } else if (!(curCh === '\\' || curCh === '"')) {
-          curSt = 26
-          continue
-        }
-        break
-      case 27:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
-          continue
-        }
-        break
-      case 29:
-        if (true) {
-          curSt = 26
-          continue
-        }
-        break
-      case 32:
-        if (curCh === 'a') {
           curSt = 33
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (!(curCh === '\\' || curCh === '"')) {
+          curSt = 30
+          continue
+        }
+        break
+      case 31:
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 33:
-        if (curCh === 'c') {
-          curSt = 34
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
-          continue
-        }
-        break
-      case 34:
-        if (curCh === 'k') {
-          curSt = 35
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
-          continue
-        }
-        break
-      case 35:
-        if (curCh === '_') {
-          curSt = 36
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (true) {
+          curSt = 30
           continue
         }
         break
       case 36:
-        if (curCh === 'e') {
+        if (curCh === 'a') {
           curSt = 37
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 37:
-        if (curCh === 'l') {
+        if (curCh === 'c') {
           curSt = 38
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 38:
-        if (curCh === 't') {
+        if (curCh === 'k') {
           curSt = 39
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 39:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '_') {
+          curSt = 40
+          continue
+        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 40:
-        if (curCh === 'v') {
+        if (curCh === 'e') {
           curSt = 41
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 41:
-        if (curCh === 'a') {
+        if (curCh === 'l') {
           curSt = 42
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 42:
-        if (curCh === 'l') {
+        if (curCh === 't') {
           curSt = 43
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 43:
-        if (curCh === 'i') {
-          curSt = 44
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 44:
-        if (curCh === 'd') {
+        if (curCh === 'v') {
           curSt = 45
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 45:
-        if (curCh === 'I') {
+        if (curCh === 'a') {
           curSt = 46
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 46:
-        if (curCh === 'n') {
+        if (curCh === 'l') {
           curSt = 47
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 47:
-        if (curCh === 's') {
+        if (curCh === 'i') {
           curSt = 48
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 48:
-        if (curCh === 't') {
+        if (curCh === 'd') {
           curSt = 49
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 49:
-        if (curCh === 'r') {
+        if (curCh === 'I') {
           curSt = 50
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 50:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'n') {
+          curSt = 51
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 51:
-        if (curCh === 'd') {
+        if (curCh === 's') {
           curSt = 52
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 52:
-        if (curCh === 'T') {
+        if (curCh === 't') {
           curSt = 53
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 53:
-        if (curCh === 'y') {
+        if (curCh === 'r') {
           curSt = 54
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 54:
-        if (curCh === 'p') {
-          curSt = 55
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 55:
-        if (curCh === 'e') {
+        if (curCh === 'd') {
           curSt = 56
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 56:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'T') {
+          curSt = 57
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 57:
-        if (curCh === 'a') {
+        if (curCh === 'y') {
           curSt = 58
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 58:
-        if (curCh === 'd') {
+        if (curCh === 'p') {
           curSt = 59
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 59:
-        if (curCh === 'C') {
+        if (curCh === 'e') {
           curSt = 60
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 60:
-        if (curCh === 'o') {
-          curSt = 61
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 61:
-        if (curCh === 'd') {
+        if (curCh === 'a') {
           curSt = 62
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 62:
-        if (curCh === 'e') {
+        if (curCh === 'd') {
           curSt = 63
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 63:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'C') {
+          curSt = 64
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 64:
-        if (curCh === 'l') {
+        if (curCh === 'o') {
           curSt = 65
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 65:
-        if (curCh === 'u') {
+        if (curCh === 'd') {
           curSt = 66
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
@@ -722,374 +709,374 @@ export function *lex(input, debug = false) {
         if (curCh === 'e') {
           curSt = 67
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 67:
-        if (curCh === 'E') {
-          curSt = 68
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 68:
-        if (curCh === 'r') {
+        if (curCh === 'l') {
           curSt = 69
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 69:
-        if (curCh === 'r') {
+        if (curCh === 'u') {
           curSt = 70
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 70:
-        if (curCh === 'o') {
+        if (curCh === 'e') {
           curSt = 71
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 71:
-        if (curCh === 'r') {
+        if (curCh === 'E') {
           curSt = 72
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 72:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'r') {
+          curSt = 73
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 73:
-        if (curCh === 'M') {
+        if (curCh === 'r') {
           curSt = 74
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 74:
-        if (curCh === 'a') {
+        if (curCh === 'o') {
           curSt = 75
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 75:
-        if (curCh === 't') {
+        if (curCh === 'r') {
           curSt = 76
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 76:
-        if (curCh === 'c') {
-          curSt = 77
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 77:
-        if (curCh === 'h') {
+        if (curCh === 'M') {
           curSt = 78
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 78:
-        if (curCh === 'i') {
+        if (curCh === 'a') {
           curSt = 79
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 79:
-        if (curCh === 'n') {
+        if (curCh === 't') {
           curSt = 80
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 80:
-        if (curCh === 'g') {
+        if (curCh === 'c') {
           curSt = 81
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 81:
-        if (curCh === 'O') {
+        if (curCh === 'h') {
           curSt = 82
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 82:
-        if (curCh === 'v') {
+        if (curCh === 'i') {
           curSt = 83
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 83:
-        if (curCh === 'e') {
+        if (curCh === 'n') {
           curSt = 84
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 84:
-        if (curCh === 'r') {
+        if (curCh === 'g') {
           curSt = 85
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 85:
-        if (curCh === 'l') {
+        if (curCh === 'O') {
           curSt = 86
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 86:
-        if (curCh === 'o') {
+        if (curCh === 'v') {
           curSt = 87
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 87:
-        if (curCh === 'a') {
+        if (curCh === 'e') {
           curSt = 88
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 88:
-        if (curCh === 'd') {
+        if (curCh === 'r') {
           curSt = 89
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 89:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'l') {
+          curSt = 90
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 90:
-        if (curCh === 'E') {
-          curSt = 102
+        if (curCh === 'o') {
+          curSt = 91
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 91:
-        if (curCh === 'p') {
+        if (curCh === 'a') {
           curSt = 92
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 92:
-        if (curCh === 'e') {
+        if (curCh === 'd') {
           curSt = 93
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 93:
-        if (curCh === 'M') {
-          curSt = 94
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 94:
-        if (curCh === 'i') {
-          curSt = 95
+        if (curCh === 'E') {
+          curSt = 106
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 95:
-        if (curCh === 's') {
+        if (curCh === 'p') {
           curSt = 96
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 96:
-        if (curCh === 'm') {
+        if (curCh === 'e') {
           curSt = 97
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 97:
-        if (curCh === 'a') {
+        if (curCh === 'M') {
           curSt = 98
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 98:
-        if (curCh === 't') {
+        if (curCh === 'i') {
           curSt = 99
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 99:
-        if (curCh === 'c') {
+        if (curCh === 's') {
           curSt = 100
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 100:
-        if (curCh === 'h') {
+        if (curCh === 'm') {
           curSt = 101
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 101:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'a') {
+          curSt = 102
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 102:
-        if (curCh === 'r') {
+        if (curCh === 't') {
           curSt = 103
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 103:
-        if (curCh === 'r') {
+        if (curCh === 'c') {
           curSt = 104
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 104:
-        if (curCh === 'o') {
+        if (curCh === 'h') {
           curSt = 105
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 105:
-        if (curCh === 'r') {
-          curSt = 106
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 106:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'r') {
+          curSt = 107
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 107:
-        if (curCh === 'n') {
+        if (curCh === 'r') {
           curSt = 108
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 108:
-        if (curCh === 'e') {
+        if (curCh === 'o') {
           curSt = 109
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
@@ -1097,422 +1084,419 @@ export function *lex(input, debug = false) {
         if (curCh === 'r') {
           curSt = 110
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 110:
-        if (curCh === 'a') {
-          curSt = 111
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 111:
-        if (curCh === 'l') {
+        if (curCh === 'n') {
           curSt = 112
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 112:
-        if (curCh === 'O') {
+        if (curCh === 'e') {
           curSt = 113
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 113:
-        if (curCh === 'v') {
+        if (curCh === 'r') {
           curSt = 114
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 114:
-        if (curCh === 'e') {
+        if (curCh === 'a') {
           curSt = 115
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 115:
-        if (curCh === 'r') {
+        if (curCh === 'l') {
           curSt = 116
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 116:
-        if (curCh === 'f') {
+        if (curCh === 'O') {
           curSt = 117
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 117:
-        if (curCh === 'l') {
+        if (curCh === 'v') {
           curSt = 118
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 118:
-        if (curCh === 'o') {
+        if (curCh === 'e') {
           curSt = 119
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 119:
-        if (curCh === 'w') {
+        if (curCh === 'r') {
           curSt = 120
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 120:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'f') {
+          curSt = 121
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 121:
-        if (curCh === 't') {
+        if (curCh === 'l') {
           curSt = 122
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 122:
-        if (curCh === 'e') {
+        if (curCh === 'o') {
           curSt = 123
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 123:
-        if (curCh === 'z') {
+        if (curCh === 'w') {
           curSt = 124
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 124:
-        if (curCh === 'O') {
-          curSt = 125
-          continue
-        } else if (curCh === 'U') {
-          curSt = 126
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 125:
-        if (curCh === 'v') {
-          curSt = 135
+        if (curCh === 't') {
+          curSt = 126
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 126:
-        if (curCh === 'n') {
+        if (curCh === 'e') {
           curSt = 127
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 127:
-        if (curCh === 'd') {
+        if (curCh === 'z') {
           curSt = 128
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 128:
-        if (curCh === 'e') {
+        if (curCh === 'O') {
           curSt = 129
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === 'U') {
+          curSt = 130
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 129:
-        if (curCh === 'r') {
-          curSt = 130
+        if (curCh === 'v') {
+          curSt = 139
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 130:
-        if (curCh === 'f') {
+        if (curCh === 'n') {
           curSt = 131
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 131:
-        if (curCh === 'l') {
+        if (curCh === 'd') {
           curSt = 132
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 132:
-        if (curCh === 'o') {
+        if (curCh === 'e') {
           curSt = 133
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 133:
-        if (curCh === 'w') {
+        if (curCh === 'r') {
           curSt = 134
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 134:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'f') {
+          curSt = 135
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 135:
-        if (curCh === 'e') {
+        if (curCh === 'l') {
           curSt = 136
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 136:
-        if (curCh === 'r') {
+        if (curCh === 'o') {
           curSt = 137
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 137:
-        if (curCh === 'f') {
+        if (curCh === 'w') {
           curSt = 138
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 138:
-        if (curCh === 'l') {
-          curSt = 139
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 139:
-        if (curCh === 'o') {
+        if (curCh === 'e') {
           curSt = 140
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 140:
-        if (curCh === 'w') {
+        if (curCh === 'r') {
           curSt = 141
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 141:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'f') {
+          curSt = 142
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 142:
-        if (curCh === 'i') {
+        if (curCh === 'l') {
           curSt = 143
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 143:
-        if (curCh === 'l') {
+        if (curCh === 'o') {
           curSt = 144
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 144:
-        if (curCh === 'e') {
+        if (curCh === 'w') {
           curSt = 145
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 145:
-        if (curCh === 'd') {
-          curSt = 146
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 146:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'i') {
+          curSt = 147
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 147:
-        if (curCh === 'r') {
+        if (curCh === 'l') {
           curSt = 148
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 148:
-        if (curCh === 'a') {
+        if (curCh === 'e') {
           curSt = 149
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 149:
-        if (curCh === 'm') {
+        if (curCh === 'd') {
           curSt = 150
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 150:
-        if (curCh === 'e') {
-          curSt = 151
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 151:
-        if (curCh === 't') {
+        if (curCh === 'r') {
           curSt = 152
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 152:
-        if (curCh === 'e') {
+        if (curCh === 'a') {
           curSt = 153
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 153:
-        if (curCh === 'r') {
+        if (curCh === 'm') {
           curSt = 154
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 154:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'e') {
+          curSt = 155
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 155:
-        if (curCh === 'l') {
-          curSt = 161
+        if (curCh === 't') {
+          curSt = 156
           continue
-        } else if (curCh === 'n') {
-          curSt = 162
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 156:
-        if (curCh === 'u') {
+        if (curCh === 'e') {
           curSt = 157
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
@@ -1520,50 +1504,53 @@ export function *lex(input, debug = false) {
         if (curCh === 'r') {
           curSt = 158
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 158:
-        if (curCh === 'c') {
-          curSt = 159
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 159:
-        if (curCh === 'e') {
-          curSt = 160
+        if (curCh === 'l') {
+          curSt = 165
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === 'n') {
+          curSt = 166
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 160:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'u') {
+          curSt = 161
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 161:
-        if (curCh === 'f') {
-          curSt = 166
+        if (curCh === 'r') {
+          curSt = 162
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 162:
-        if (curCh === 'd') {
+        if (curCh === 'c') {
           curSt = 163
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
@@ -1571,113 +1558,113 @@ export function *lex(input, debug = false) {
         if (curCh === 'e') {
           curSt = 164
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 164:
-        if (curCh === 'r') {
-          curSt = 165
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 165:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'f') {
+          curSt = 170
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 166:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'd') {
+          curSt = 167
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 167:
-        if (curCh === 'w') {
+        if (curCh === 'e') {
           curSt = 168
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 168:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'r') {
+          curSt = 169
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 169:
-        if (curCh === 'l') {
-          curSt = 177
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 170:
-        if (curCh === 'g') {
-          curSt = 171
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 171:
-        if (curCh === '_') {
+        if (curCh === 'w') {
           curSt = 172
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 172:
-        if (curCh === 'm') {
-          curSt = 173
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 173:
-        if (curCh === 'a') {
-          curSt = 174
+        if (curCh === 'l') {
+          curSt = 181
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 174:
-        if (curCh === 'p') {
+        if (curCh === 'g') {
           curSt = 175
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 175:
-        if (curCh === 's') {
+        if (curCh === '_') {
           curSt = 176
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 176:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'm') {
+          curSt = 177
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
@@ -1685,191 +1672,188 @@ export function *lex(input, debug = false) {
         if (curCh === 'a') {
           curSt = 178
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 178:
-        if (curCh === 'n') {
+        if (curCh === 'p') {
           curSt = 179
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 179:
-        if (curCh === 'c') {
+        if (curCh === 's') {
           curSt = 180
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 180:
-        if (curCh === 'e') {
-          curSt = 181
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 181:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'a') {
+          curSt = 182
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 182:
-        if (curCh === 'o') {
+        if (curCh === 'n') {
           curSt = 183
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 183:
-        if (curCh === 'u') {
+        if (curCh === 'c') {
           curSt = 184
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 184:
-        if (curCh === 'n') {
+        if (curCh === 'e') {
           curSt = 185
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 185:
-        if (curCh === 't') {
-          curSt = 186
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 186:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'o') {
+          curSt = 187
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 187:
-        if (curCh === 't') {
-          curSt = 202
+        if (curCh === 'u') {
+          curSt = 188
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 188:
-        if (curCh === 'h') {
+        if (curCh === 'n') {
           curSt = 189
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 189:
-        if (curCh === 'e') {
+        if (curCh === 't') {
           curSt = 190
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 190:
-        if (curCh === 'r') {
-          curSt = 191
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 191:
-        if (curCh === '_') {
-          curSt = 192
+        if (curCh === 't') {
+          curSt = 206
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 192:
-        if (curCh === 'c') {
+        if (curCh === 'h') {
           curSt = 193
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 193:
-        if (curCh === 'o') {
+        if (curCh === 'e') {
           curSt = 194
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 194:
-        if (curCh === 'n') {
+        if (curCh === 'r') {
           curSt = 195
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 195:
-        if (curCh === 't') {
+        if (curCh === '_') {
           curSt = 196
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 196:
-        if (curCh === 'r') {
+        if (curCh === 'c') {
           curSt = 197
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 197:
-        if (curCh === 'a') {
+        if (curCh === 'o') {
           curSt = 198
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 198:
-        if (curCh === 'c') {
+        if (curCh === 'n') {
           curSt = 199
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
@@ -1877,56 +1861,59 @@ export function *lex(input, debug = false) {
         if (curCh === 't') {
           curSt = 200
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 200:
-        if (curCh === 's') {
+        if (curCh === 'r') {
           curSt = 201
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 201:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'a') {
+          curSt = 202
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 202:
-        if (curCh === 'p') {
+        if (curCh === 'c') {
           curSt = 203
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 203:
-        if (curCh === 'u') {
+        if (curCh === 't') {
           curSt = 204
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 204:
-        if (curCh === 't') {
+        if (curCh === 's') {
           curSt = 205
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 205:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
@@ -1934,8 +1921,8 @@ export function *lex(input, debug = false) {
         if (curCh === 'p') {
           curSt = 207
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
@@ -1943,8 +1930,8 @@ export function *lex(input, debug = false) {
         if (curCh === 'u') {
           curSt = 208
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
@@ -1952,98 +1939,131 @@ export function *lex(input, debug = false) {
         if (curCh === 't') {
           curSt = 209
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 209:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 210:
-        if (curCh === 'd') {
-          curSt = 218
+        if (curCh === 'p') {
+          curSt = 211
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 211:
-        if (curCh === 'a') {
+        if (curCh === 'u') {
           curSt = 212
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 212:
-        if (curCh === 'i') {
+        if (curCh === 't') {
           curSt = 213
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 213:
-        if (curCh === 'n') {
-          curSt = 214
-          continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 214:
-        if (curCh === '_') {
-          curSt = 215
+        if (curCh === 'd') {
+          curSt = 222
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 215:
-        if (curCh === 'i') {
+        if (curCh === 'a') {
           curSt = 216
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 216:
-        if (curCh === 'd') {
+        if (curCh === 'i') {
           curSt = 217
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 217:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'n') {
+          curSt = 218
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 218:
-        if (curCh === 'e') {
+        if (curCh === '_') {
           curSt = 219
           continue
-        } else if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
       case 219:
-        if (curCh === '-' || curCh === '[' || curCh === ']' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 27
+        if (curCh === 'i') {
+          curSt = 220
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
+          continue
+        }
+        break
+      case 220:
+        if (curCh === 'd') {
+          curSt = 221
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
+          continue
+        }
+        break
+      case 221:
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
+          continue
+        }
+        break
+      case 222:
+        if (curCh === 'e') {
+          curSt = 223
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
+          continue
+        }
+        break
+      case 223:
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 31
           continue
         }
         break
@@ -2140,42 +2160,42 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_semi, null]
         continue
       case 22:
+        if (debug) console.log("Lexed token colon: \"" + text + "\"")
+        yield [TokenType.Tok_colon, null]
+        continue
+      case 23:
+        if (debug) console.log("Lexed token comma: \"" + text + "\"")
+        yield [TokenType.Tok_comma, null]
+        continue
+      case 24:
         if (debug) console.log("Lexed token lbr: \"" + text + "\"")
         yield [TokenType.Tok_lbr, null]
         continue
-      case 23:
+      case 25:
         if (debug) console.log("Lexed token rbr: \"" + text + "\"")
         yield [TokenType.Tok_rbr, null]
         continue
-      case 24:
+      case 26:
+        if (debug) console.log("Lexed token lbrk: \"" + text + "\"")
+        yield [TokenType.Tok_lbrk, null]
+        continue
+      case 27:
+        if (debug) console.log("Lexed token rbrk: \"" + text + "\"")
+        yield [TokenType.Tok_rbrk, null]
+        continue
+      case 28:
         if (debug) console.log("Lexed token lp: \"" + text + "\"")
         yield [TokenType.Tok_lp, text]
         continue
-      case 25:
+      case 29:
         if (debug) console.log("Lexed token rp: \"" + text + "\"")
         yield [TokenType.Tok_rp, text]
         continue
-      case 27:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
-        continue
-      case 28:
+      case 31:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
         continue
       case 32:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
-        continue
-      case 33:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
-        continue
-      case 34:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
-        continue
-      case 35:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
         continue
@@ -2192,8 +2212,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 39:
-        if (debug) console.log("Lexed token stack_elt: \"" + text + "\"")
-        yield [TokenType.Tok_stack_elt, null]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 40:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2208,8 +2228,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 43:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token stack_elt: \"" + text + "\"")
+        yield [TokenType.Tok_stack_elt, null]
         continue
       case 44:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2236,8 +2256,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 50:
-        if (debug) console.log("Lexed token invalidInstr: \"" + text + "\"")
-        yield [TokenType.Tok_invalidInstr, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 51:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2252,16 +2272,16 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 54:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token invalidInstr: \"" + text + "\"")
+        yield [TokenType.Tok_invalidInstr, text]
         continue
       case 55:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
         continue
       case 56:
-        if (debug) console.log("Lexed token badType: \"" + text + "\"")
-        yield [TokenType.Tok_badType, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 57:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2276,8 +2296,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 60:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token badType: \"" + text + "\"")
+        yield [TokenType.Tok_badType, text]
         continue
       case 61:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2288,8 +2308,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 63:
-        if (debug) console.log("Lexed token deadCode: \"" + text + "\"")
-        yield [TokenType.Tok_deadCode, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 64:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2304,8 +2324,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 67:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token deadCode: \"" + text + "\"")
+        yield [TokenType.Tok_deadCode, text]
         continue
       case 68:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2324,8 +2344,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 72:
-        if (debug) console.log("Lexed token valueError: \"" + text + "\"")
-        yield [TokenType.Tok_valueError, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 73:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2340,8 +2360,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 76:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token valueError: \"" + text + "\"")
+        yield [TokenType.Tok_valueError, text]
         continue
       case 77:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2392,8 +2412,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 89:
-        if (debug) console.log("Lexed token noMatchingOverload: \"" + text + "\"")
-        yield [TokenType.Tok_noMatchingOverload, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 90:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2408,8 +2428,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 93:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token noMatchingOverload: \"" + text + "\"")
+        yield [TokenType.Tok_noMatchingOverload, text]
         continue
       case 94:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2440,8 +2460,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 101:
-        if (debug) console.log("Lexed token typeMismatch: \"" + text + "\"")
-        yield [TokenType.Tok_typeMismatch, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 102:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2456,12 +2476,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 105:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token typeMismatch: \"" + text + "\"")
+        yield [TokenType.Tok_typeMismatch, text]
         continue
       case 106:
-        if (debug) console.log("Lexed token tcError: \"" + text + "\"")
-        yield [TokenType.Tok_tcError, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 107:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2476,8 +2496,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 110:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token tcError: \"" + text + "\"")
+        yield [TokenType.Tok_tcError, text]
         continue
       case 111:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2516,8 +2536,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 120:
-        if (debug) console.log("Lexed token generalOverflow: \"" + text + "\"")
-        yield [TokenType.Tok_generalOverflow, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 121:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2532,8 +2552,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 124:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token generalOverflow: \"" + text + "\"")
+        yield [TokenType.Tok_generalOverflow, text]
         continue
       case 125:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2572,8 +2592,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 134:
-        if (debug) console.log("Lexed token mutezUnderflow: \"" + text + "\"")
-        yield [TokenType.Tok_mutezUnderflow, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 135:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2588,8 +2608,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 138:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token mutezUnderflow: \"" + text + "\"")
+        yield [TokenType.Tok_mutezUnderflow, text]
         continue
       case 139:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2600,8 +2620,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 141:
-        if (debug) console.log("Lexed token mutezOverflow: \"" + text + "\"")
-        yield [TokenType.Tok_mutezOverflow, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 142:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2616,12 +2636,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 145:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token mutezOverflow: \"" + text + "\"")
+        yield [TokenType.Tok_mutezOverflow, text]
         continue
       case 146:
-        if (debug) console.log("Lexed token failed: \"" + text + "\"")
-        yield [TokenType.Tok_failed, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 147:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2636,8 +2656,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 150:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token failed: \"" + text + "\"")
+        yield [TokenType.Tok_failed, text]
         continue
       case 151:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2652,8 +2672,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 154:
-        if (debug) console.log("Lexed token parameter: \"" + text + "\"")
-        yield [TokenType.Tok_parameter, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 155:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2668,16 +2688,16 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 158:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token parameter: \"" + text + "\"")
+        yield [TokenType.Tok_parameter, text]
         continue
       case 159:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
         continue
       case 160:
-        if (debug) console.log("Lexed token source: \"" + text + "\"")
-        yield [TokenType.Tok_source, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 161:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2692,40 +2712,40 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 164:
+        if (debug) console.log("Lexed token source: \"" + text + "\"")
+        yield [TokenType.Tok_source, text]
+        continue
+      case 165:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
         continue
-      case 165:
-        if (debug) console.log("Lexed token sender: \"" + text + "\"")
-        yield [TokenType.Tok_sender, text]
-        continue
       case 166:
-        if (debug) console.log("Lexed token self: \"" + text + "\"")
-        yield [TokenType.Tok_self, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 167:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
         continue
       case 168:
-        if (debug) console.log("Lexed token now: \"" + text + "\"")
-        yield [TokenType.Tok_now, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 169:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token sender: \"" + text + "\"")
+        yield [TokenType.Tok_sender, text]
         continue
       case 170:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token self: \"" + text + "\"")
+        yield [TokenType.Tok_self, text]
         continue
       case 171:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
         continue
       case 172:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token now: \"" + text + "\"")
+        yield [TokenType.Tok_now, text]
         continue
       case 173:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2740,8 +2760,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 176:
-        if (debug) console.log("Lexed token big_maps: \"" + text + "\"")
-        yield [TokenType.Tok_big_maps, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 177:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2756,12 +2776,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 180:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token big_maps: \"" + text + "\"")
+        yield [TokenType.Tok_big_maps, text]
         continue
       case 181:
-        if (debug) console.log("Lexed token balance: \"" + text + "\"")
-        yield [TokenType.Tok_balance, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 182:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2776,12 +2796,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 185:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token balance: \"" + text + "\"")
+        yield [TokenType.Tok_balance, text]
         continue
       case 186:
-        if (debug) console.log("Lexed token amount: \"" + text + "\"")
-        yield [TokenType.Tok_amount, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 187:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2796,8 +2816,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 190:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token amount: \"" + text + "\"")
+        yield [TokenType.Tok_amount, text]
         continue
       case 191:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2840,8 +2860,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 201:
-        if (debug) console.log("Lexed token other_contracts: \"" + text + "\"")
-        yield [TokenType.Tok_other_contracts, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 202:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2856,8 +2876,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 205:
-        if (debug) console.log("Lexed token output: \"" + text + "\"")
-        yield [TokenType.Tok_output, text]
+        if (debug) console.log("Lexed token other_contracts: \"" + text + "\"")
+        yield [TokenType.Tok_other_contracts, text]
         continue
       case 206:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2872,8 +2892,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 209:
-        if (debug) console.log("Lexed token input: \"" + text + "\"")
-        yield [TokenType.Tok_input, text]
+        if (debug) console.log("Lexed token output: \"" + text + "\"")
+        yield [TokenType.Tok_output, text]
         continue
       case 210:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2888,8 +2908,8 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 213:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token input: \"" + text + "\"")
+        yield [TokenType.Tok_input, text]
         continue
       case 214:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2904,14 +2924,30 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 217:
-        if (debug) console.log("Lexed token chain_id: \"" + text + "\"")
-        yield [TokenType.Tok_chain_id, text]
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
         continue
       case 218:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
         continue
       case 219:
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
+        continue
+      case 220:
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
+        continue
+      case 221:
+        if (debug) console.log("Lexed token chain_id: \"" + text + "\"")
+        yield [TokenType.Tok_chain_id, text]
+        continue
+      case 222:
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
+        continue
+      case 223:
         if (debug) console.log("Lexed token code: \"" + text + "\"")
         yield [TokenType.Tok_code, text]
         continue
