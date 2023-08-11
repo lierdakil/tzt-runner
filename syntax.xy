@@ -102,6 +102,7 @@ Elts
 
 Elt
   : AnyWord { _1 }
+  | lp Elts rp { `(${_2})` }
   | Seq { _1.length > 0 ? `{ ${_1} }` : "{}" }
   ;
 
@@ -125,7 +126,6 @@ AnyWord
   | parameter { _1 }
   | sender { _1 }
   | source { _1 }
-  | lp { _1 }
   | failed { _1 }
   | mutezOverflow { _1 }
   | mutezUnderflow { _1 }
@@ -138,7 +138,6 @@ AnyWord
   | deadCode { _1 }
   | badType { _1 }
   | invalidInstr { _1 }
-  | %non1 rp { _1 }
   ;
 
 Stack
