@@ -40,16 +40,66 @@ interface Res {
   big_maps?: string[];
 }
 
-const flags = parse(Deno.args, {
+const arg_parser_opts = {
   string: ["proto", "_", "jobs"],
-  boolean: ["tc_only", "hide_successes", "debug"],
+  boolean: ["tc_only", "hide_successes", "debug", "no_normalize", "help"],
   default: {
     proto: "PtNairob",
     jobs: "1",
     tc_only: false,
     hide_successes: false,
+    no_normalize: false,
+    debug: false,
+    help: false,
   },
-});
+  desc: {
+    proto: "\t\tTezos protocol version",
+    jobs: "\t\tNumber of parallel jobs",
+    tc_only: "\t\tIf file ends with .tc.tzt, only run typecheck on it",
+    hide_successes: "\tHide output of succesful tests",
+    no_normalize:
+      "\t\tDon't normalize expected value. Note values with wildcards are never normalized!",
+    debug: "\t\tShow all octez-client output",
+    help: "\t\t\tShow this help message",
+  },
+  unknown: (arg: string, key?: string) => {
+    if (key) {
+      throw new Error(`Unknown command line argument: ${arg}`);
+    } else {
+      return true;
+    }
+  },
+} as const;
+
+const flags = parse(Deno.args, arg_parser_opts);
+
+if (flags.help) {
+  console.log("Usage:\n");
+  console.log(
+    `./${
+      import.meta.url.split("/").splice(-1)[0]
+    } [OPTIONS/FLAGS] filename.tzt [...]\n`
+  );
+  console.log("\nOptions:");
+  for (const i of arg_parser_opts.string) {
+    if (i !== "_") {
+      const def =
+        arg_parser_opts.default[i as keyof typeof arg_parser_opts["default"]];
+      const desc =
+        arg_parser_opts.desc[i as keyof typeof arg_parser_opts["default"]];
+      console.log(`\t--${i}=... ${desc} (default: ${def})`);
+    }
+  }
+  console.log("\nFlags:");
+  for (const i of arg_parser_opts.boolean) {
+    const def =
+      arg_parser_opts.default[i as keyof typeof arg_parser_opts["default"]];
+    const desc =
+      arg_parser_opts.desc[i as keyof typeof arg_parser_opts["default"]];
+    console.log(`\t--${i} ${desc} (default: ${def})`);
+  }
+  Deno.exit(0);
+}
 
 const queue = new PQueue({
   concurrency: parseInt(flags.jobs),
@@ -148,14 +198,7 @@ async function process(fn: string) {
     const self =
       res.self != null ? ["--self-address", res.self.replaceAll('"', "")] : [];
     const now = res.now != null ? ["--now", res.now] : [];
-    const extraArgs = [
-      amount,
-      balance,
-      payer,
-      self,
-      now,
-      sender,
-    ].flat();
+    const extraArgs = [amount, balance, payer, self, now, sender].flat();
 
     let init_storage: string;
 
@@ -189,7 +232,7 @@ async function process(fn: string) {
         storage = `(option ${res.output.stack[0].type})`;
         init_storage = "None";
         deinit_code = "SOME";
-        expected_out_val = `(Some ${res.output.stack[0].val})`;
+        expected_out_val = `Some ${res.output.stack[0].val}`;
       } else {
         storage =
           "(option (pair " +
@@ -198,9 +241,18 @@ async function process(fn: string) {
         init_storage = "None";
         deinit_code = `PAIR ${res.output.stack.length}; SOME`;
         expected_out_val =
-          "(Some (Pair " +
+          "Some (Pair " +
           res.output.stack.map(({ val }) => val).join(" ") +
-          "))";
+          ")";
+      }
+
+      if (!flags.no_normalize && expected_out_val.match(/_/) === null) {
+        expected_out_val = await normalize({
+          data: expected_out_val,
+          type: storage,
+          tezos_protocol,
+          debug: flags.debug,
+        });
       }
 
       const code_inner = res.code.trim().length > 0 ? `${res.code};` : "";
@@ -225,7 +277,8 @@ async function process(fn: string) {
         throw new Error("Unexpected error");
       }
 
-      const [_, out_val, ..._rest] = out.stdout.split("\n");
+      const [_, out_val_raw, ..._rest] = out.stdout.split("\n");
+      const out_val = trimParens(out_val_raw);
 
       const expected_regex = new RegExp(
         `^${expected_out_val
@@ -493,8 +546,43 @@ code { ${p.code} };
   const stdout = new TextDecoder().decode(out.stdout);
   const stderr = new TextDecoder().decode(out.stderr);
   if (p.debug) {
-    console.log(out.stdout);
-    console.log(out.stderr);
+    console.log(stdout);
+    console.log(stderr);
   }
   return { contract_text, stdout, stderr, code: out.code };
+}
+
+interface OctezClientNormalizeParams {
+  type: string;
+  data: string;
+  tezos_protocol: string;
+  debug: boolean;
+}
+
+async function normalize(p: OctezClientNormalizeParams): Promise<string> {
+  const out = await new Deno.Command("octez-client", {
+    args: [
+      "--mode",
+      "mockup",
+      "--protocol",
+      p.tezos_protocol,
+      "normalize",
+      "data",
+      p.data,
+      "of",
+      "type",
+      p.type,
+    ],
+  }).output();
+
+  const stdout = new TextDecoder().decode(out.stdout);
+  const stderr = new TextDecoder().decode(out.stderr);
+  if (p.debug || out.code !== 0) {
+    console.log(stdout);
+    console.log(stderr);
+  }
+  if (out.code !== 0) {
+    throw new Error(`Failed to normalize data ${p.data} of type ${p.type}`);
+  }
+  return stdout.replaceAll(/\s+/g, " ").trim();
 }

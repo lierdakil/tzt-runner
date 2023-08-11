@@ -309,6 +309,7 @@ or_nat-nat_05.tzt
 or_nat-nat_06.tzt
 packunpack_address_00.tzt
 packunpack_bool_00.tzt
+packunpack_bytes_00.tzt
 packunpack_int_00.tzt
 packunpack_keyhash_00.tzt
 packunpack_mutez_00.tzt
@@ -317,6 +318,7 @@ packunpack_string_00.tzt
 packunpack_timestamp_00.tzt
 pair_int-int_00.tzt
 pair_nat-string_00.tzt
+pair_pair-nat-string-pair-string-nat_00.tzt
 push_int_00.tzt
 push_string_00.tzt
 right_nat-int_00.tzt

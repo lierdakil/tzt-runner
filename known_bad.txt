@@ -14,8 +14,6 @@ mem_bigmapstringnat_04.tzt
 mem_bigmapstringnat_05.tzt
 mul_mutez-nat_01.tzt
 mul_nat-mutez_01.tzt
-packunpack_bytes_00.tzt
-pair_pair-nat-string-pair-string-nat_00.tzt
 self_00.tzt
 setdelegate_00.tzt
 transfertokens_00.tzt
