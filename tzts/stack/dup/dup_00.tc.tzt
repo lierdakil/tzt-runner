@@ -1,0 +1,3 @@
+code { DUP } ;
+input { } ;
+output (TCError (NoMatchingOverload DUP []));
