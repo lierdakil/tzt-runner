@@ -347,27 +347,33 @@ async function process(fn: string) {
               break;
             case "NoMatchingOverload": {
               const args = detail.stack;
-              if (detail.instr == "BYTES" || detail.instr == "NAT") {
-                // Like, seriously, WTF?
-                expected_error_line = `invalid primitive ${detail.instr}`;
-              } else {
-                expected_error_line = [
-                  `operator ${detail.instr} is undefined between ${args.join(
-                    " and "
-                  )}`,
-                  `operator ${detail.instr} is undefined on ${args}`,
-                ].concat(
-                  args.length > 0
-                    ? [
-                        `wrong stack type for instruction ${
+              switch (detail.instr) {
+                case "BYTES":
+                case "NAT":
+                  // Like, seriously, WTF?
+                  expected_error_line = `invalid primitive ${detail.instr}`;
+                  break;
+                case "DIP":
+                case "DUP":
+                  // bit of a strange case, too
+                  expected_error_line = [
+                    args.length > 0
+                      ? `wrong stack type for instruction ${detail.instr}: [ ${args[0]} : ... ]`
+                      : `wrong stack type for instruction ${detail.instr}: []`,
+                  ];
+                  break;
+                default:
+                  expected_error_line = [
+                    `operator ${detail.instr} is undefined between ${args.join(
+                      " and "
+                    )}`,
+                    `operator ${detail.instr} is undefined on ${args}`,
+                    args.length > 0
+                      ? `wrong stack type for instruction ${
                           detail.instr
-                        }: [ ${args.join(" : ")} ]`,
-                        `wrong stack type for instruction ${
-                          detail.instr
-                        }: [ ${args[0]} : ... ]`,
-                      ]
-                    : `wrong stack type for instruction ${detail.instr}: []`
-                );
+                        }: [ ${args.join(" : ")} ]`
+                      : `wrong stack type for instruction ${detail.instr}: []`,
+                  ];
               }
               break;
             }
