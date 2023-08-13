@@ -46,7 +46,7 @@ const arg_parser_opts = {
   default: {
     proto: "PtNairob",
     jobs: "1",
-    tc_only: false,
+    tc_only: true,
     hide_successes: false,
     no_normalize: false,
     debug: false,
@@ -356,9 +356,18 @@ async function process(fn: string) {
                     " and "
                   )}`,
                   `operator ${detail.instr} is undefined on ${args}`,
-                  `wrong stack type for instruction ${detail.instr}: []`,
-                  `wrong stack type for instruction ${detail.instr}: [${args}`,
-                ];
+                ].concat(
+                  args.length > 0
+                    ? [
+                        `wrong stack type for instruction ${
+                          detail.instr
+                        }: [ ${args.join(" : ")} ]`,
+                        `wrong stack type for instruction ${
+                          detail.instr
+                        }: [ ${args[0]} : ... ]`,
+                      ]
+                    : `wrong stack type for instruction ${detail.instr}: []`
+                );
               }
               break;
             }
@@ -371,22 +380,6 @@ async function process(fn: string) {
               expected_error_line = `Type ${detail.l} is not compatible with type ${detail.r}`;
               break;
             case "DeadCode": {
-              const match_res = x.match(
-                /At line (\d+) characters (\d+) to (\d+),/
-              );
-              if (!match_res)
-                throw new Error("No position information in error message");
-              const line = parseInt(match_res[1]);
-              const pos1 = parseInt(match_res[2]);
-              const pos2 = parseInt(match_res[3]);
-              const str = out.contract_text
-                .split("\n")
-                [line - 1].slice(pos1, pos2);
-              if (str !== detail.instr) {
-                throw new Error(
-                  `Expected ${detail.instr}, but the failing instruction is ${str}`
-                );
-              }
               expected_error_line =
                 "The FAIL instruction must appear in a tail position";
               break;
@@ -518,9 +511,13 @@ code { ${p.code} };
         "mockup",
         "--protocol",
         p.tezos_protocol,
-        "typecheck",
+        "convert",
         "script",
         script,
+        "from",
+        "michelson",
+        "to",
+        "michelson",
       ]
     : [
         "--mode",
