@@ -128,7 +128,7 @@ export function *lex(input, debug = false) {
     let buf = ""
     let tmp = ""
     while (curSt >= 0) {
-      if ([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,31,32,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223].includes(curSt)) {
+      if ([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,32,33,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224].includes(curSt)) {
         buf += tmp
         tmp = ""
         accSt = curSt
@@ -145,623 +145,623 @@ export function *lex(input, debug = false) {
         if (curCh === '\u{00000009}' || curCh === '\u{0000000a}' || curCh === '\u{0000000d}' || curCh === ' ') {
           curSt = 1
           continue
-        } else if (curCh === 'c') {
+        } else if (curCh === '#') {
           curSt = 2
           continue
-        } else if (curCh === 'i') {
+        } else if (curCh === 'c') {
           curSt = 3
           continue
-        } else if (curCh === 'o') {
+        } else if (curCh === 'i') {
           curSt = 4
           continue
-        } else if (curCh === 'a') {
+        } else if (curCh === 'o') {
           curSt = 5
           continue
-        } else if (curCh === 'b') {
+        } else if (curCh === 'a') {
           curSt = 6
           continue
-        } else if (curCh === 'n') {
+        } else if (curCh === 'b') {
           curSt = 7
           continue
-        } else if (curCh === 's') {
+        } else if (curCh === 'n') {
           curSt = 8
           continue
-        } else if (curCh === 'p') {
+        } else if (curCh === 's') {
           curSt = 9
           continue
-        } else if (curCh === 'F') {
+        } else if (curCh === 'p') {
           curSt = 10
           continue
-        } else if (curCh === 'M') {
+        } else if (curCh === 'F') {
           curSt = 11
           continue
-        } else if (curCh === 'G') {
+        } else if (curCh === 'M') {
           curSt = 12
           continue
-        } else if (curCh === 'T') {
+        } else if (curCh === 'G') {
           curSt = 13
           continue
-        } else if (curCh === '_') {
+        } else if (curCh === 'T') {
           curSt = 14
           continue
-        } else if (curCh === 'N') {
+        } else if (curCh === '_') {
           curSt = 15
           continue
-        } else if (curCh === 'V') {
+        } else if (curCh === 'N') {
           curSt = 16
           continue
-        } else if (curCh === 'D') {
+        } else if (curCh === 'V') {
           curSt = 17
           continue
-        } else if (curCh === 'B') {
+        } else if (curCh === 'D') {
           curSt = 18
           continue
-        } else if (curCh === 'I') {
+        } else if (curCh === 'B') {
           curSt = 19
           continue
-        } else if (curCh === 'S') {
+        } else if (curCh === 'I') {
           curSt = 20
           continue
-        } else if (curCh === ';') {
+        } else if (curCh === 'S') {
           curSt = 21
           continue
-        } else if (curCh === ':') {
+        } else if (curCh === ';') {
           curSt = 22
           continue
-        } else if (curCh === ',') {
+        } else if (curCh === ':') {
           curSt = 23
           continue
-        } else if (curCh === '{') {
+        } else if (curCh === ',') {
           curSt = 24
           continue
-        } else if (curCh === '}') {
+        } else if (curCh === '{') {
           curSt = 25
           continue
-        } else if (curCh === '[') {
+        } else if (curCh === '}') {
           curSt = 26
           continue
-        } else if (curCh === ']') {
+        } else if (curCh === '[') {
           curSt = 27
           continue
-        } else if (curCh === '(') {
+        } else if (curCh === ']') {
           curSt = 28
           continue
-        } else if (curCh === ')') {
+        } else if (curCh === '(') {
           curSt = 29
           continue
-        } else if (curCh === '"') {
+        } else if (curCh === ')') {
           curSt = 30
           continue
-        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+        } else if (curCh === '"') {
           curSt = 31
+          continue
+        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 2:
-        if (curCh === 'o') {
-          curSt = 214
-          continue
-        } else if (curCh === 'h') {
-          curSt = 215
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (!(curCh === '\u{0000000a}')) {
+          curSt = 2
           continue
         }
         break
       case 3:
-        if (curCh === 'n') {
-          curSt = 210
+        if (curCh === 'o') {
+          curSt = 215
+          continue
+        } else if (curCh === 'h') {
+          curSt = 216
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 4:
-        if (curCh === 'u') {
-          curSt = 191
-          continue
-        } else if (curCh === 't') {
-          curSt = 192
+        if (curCh === 'n') {
+          curSt = 211
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 5:
-        if (curCh === 'm') {
-          curSt = 186
+        if (curCh === 'u') {
+          curSt = 192
+          continue
+        } else if (curCh === 't') {
+          curSt = 193
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 6:
-        if (curCh === 'a') {
-          curSt = 173
-          continue
-        } else if (curCh === 'i') {
-          curSt = 174
+        if (curCh === 'm') {
+          curSt = 187
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 7:
-        if (curCh === 'o') {
-          curSt = 171
+        if (curCh === 'a') {
+          curSt = 174
+          continue
+        } else if (curCh === 'i') {
+          curSt = 175
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 8:
-        if (curCh === 'e') {
-          curSt = 159
-          continue
-        } else if (curCh === 'o') {
-          curSt = 160
+        if (curCh === 'o') {
+          curSt = 172
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 9:
-        if (curCh === 'a') {
-          curSt = 151
+        if (curCh === 'e') {
+          curSt = 160
+          continue
+        } else if (curCh === 'o') {
+          curSt = 161
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 10:
         if (curCh === 'a') {
-          curSt = 146
+          curSt = 152
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 11:
-        if (curCh === 'u') {
-          curSt = 125
+        if (curCh === 'a') {
+          curSt = 147
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 12:
-        if (curCh === 'e') {
-          curSt = 111
+        if (curCh === 'u') {
+          curSt = 126
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 13:
-        if (curCh === 'C') {
-          curSt = 94
-          continue
-        } else if (curCh === 'y') {
-          curSt = 95
+        if (curCh === 'e') {
+          curSt = 112
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 14:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'C') {
+          curSt = 95
+          continue
+        } else if (curCh === 'y') {
+          curSt = 96
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 15:
-        if (curCh === 'o') {
-          curSt = 77
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 16:
-        if (curCh === 'a') {
-          curSt = 68
+        if (curCh === 'o') {
+          curSt = 78
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 17:
-        if (curCh === 'e') {
-          curSt = 61
+        if (curCh === 'a') {
+          curSt = 69
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 18:
-        if (curCh === 'a') {
-          curSt = 55
+        if (curCh === 'e') {
+          curSt = 62
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 19:
-        if (curCh === 'n') {
-          curSt = 44
+        if (curCh === 'a') {
+          curSt = 56
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 20:
-        if (curCh === 't') {
-          curSt = 36
+        if (curCh === 'n') {
+          curSt = 45
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
-      case 30:
-        if (curCh === '"') {
+      case 21:
+        if (curCh === 't') {
+          curSt = 37
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
           curSt = 32
-          continue
-        } else if (curCh === '\\') {
-          curSt = 33
-          continue
-        } else if (!(curCh === '\\' || curCh === '"')) {
-          curSt = 30
           continue
         }
         break
       case 31:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+        if (curCh === '"') {
+          curSt = 33
+          continue
+        } else if (curCh === '\\') {
+          curSt = 34
+          continue
+        } else if (!(curCh === '\\' || curCh === '"')) {
           curSt = 31
           continue
         }
         break
-      case 33:
-        if (true) {
-          curSt = 30
+      case 32:
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
-      case 36:
-        if (curCh === 'a') {
-          curSt = 37
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+      case 34:
+        if (true) {
           curSt = 31
           continue
         }
         break
       case 37:
-        if (curCh === 'c') {
+        if (curCh === 'a') {
           curSt = 38
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 38:
-        if (curCh === 'k') {
+        if (curCh === 'c') {
           curSt = 39
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 39:
-        if (curCh === '_') {
+        if (curCh === 'k') {
           curSt = 40
           continue
-        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 40:
-        if (curCh === 'e') {
+        if (curCh === '_') {
           curSt = 41
           continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 41:
-        if (curCh === 'l') {
+        if (curCh === 'e') {
           curSt = 42
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 42:
-        if (curCh === 't') {
+        if (curCh === 'l') {
           curSt = 43
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 43:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 't') {
+          curSt = 44
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 44:
-        if (curCh === 'v') {
-          curSt = 45
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 45:
-        if (curCh === 'a') {
+        if (curCh === 'v') {
           curSt = 46
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 46:
-        if (curCh === 'l') {
+        if (curCh === 'a') {
           curSt = 47
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 47:
-        if (curCh === 'i') {
+        if (curCh === 'l') {
           curSt = 48
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 48:
-        if (curCh === 'd') {
+        if (curCh === 'i') {
           curSt = 49
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 49:
-        if (curCh === 'I') {
+        if (curCh === 'd') {
           curSt = 50
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 50:
-        if (curCh === 'n') {
+        if (curCh === 'I') {
           curSt = 51
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 51:
-        if (curCh === 's') {
+        if (curCh === 'n') {
           curSt = 52
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 52:
-        if (curCh === 't') {
+        if (curCh === 's') {
           curSt = 53
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 53:
-        if (curCh === 'r') {
+        if (curCh === 't') {
           curSt = 54
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 54:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'r') {
+          curSt = 55
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 55:
-        if (curCh === 'd') {
-          curSt = 56
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 56:
-        if (curCh === 'T') {
+        if (curCh === 'd') {
           curSt = 57
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 57:
-        if (curCh === 'y') {
+        if (curCh === 'T') {
           curSt = 58
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 58:
-        if (curCh === 'p') {
+        if (curCh === 'y') {
           curSt = 59
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 59:
-        if (curCh === 'e') {
+        if (curCh === 'p') {
           curSt = 60
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 60:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'e') {
+          curSt = 61
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 61:
-        if (curCh === 'a') {
-          curSt = 62
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 62:
-        if (curCh === 'd') {
+        if (curCh === 'a') {
           curSt = 63
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 63:
-        if (curCh === 'C') {
+        if (curCh === 'd') {
           curSt = 64
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 64:
-        if (curCh === 'o') {
+        if (curCh === 'C') {
           curSt = 65
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 65:
-        if (curCh === 'd') {
+        if (curCh === 'o') {
           curSt = 66
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 66:
-        if (curCh === 'e') {
+        if (curCh === 'd') {
           curSt = 67
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 67:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'e') {
+          curSt = 68
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 68:
-        if (curCh === 'l') {
-          curSt = 69
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 69:
-        if (curCh === 'u') {
+        if (curCh === 'l') {
           curSt = 70
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 70:
-        if (curCh === 'e') {
+        if (curCh === 'u') {
           curSt = 71
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 71:
-        if (curCh === 'E') {
+        if (curCh === 'e') {
           curSt = 72
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 72:
-        if (curCh === 'r') {
+        if (curCh === 'E') {
           curSt = 73
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
@@ -770,295 +770,295 @@ export function *lex(input, debug = false) {
           curSt = 74
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 74:
-        if (curCh === 'o') {
+        if (curCh === 'r') {
           curSt = 75
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 75:
-        if (curCh === 'r') {
+        if (curCh === 'o') {
           curSt = 76
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 76:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'r') {
+          curSt = 77
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 77:
-        if (curCh === 'M') {
-          curSt = 78
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 78:
-        if (curCh === 'a') {
+        if (curCh === 'M') {
           curSt = 79
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 79:
-        if (curCh === 't') {
+        if (curCh === 'a') {
           curSt = 80
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 80:
-        if (curCh === 'c') {
+        if (curCh === 't') {
           curSt = 81
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 81:
-        if (curCh === 'h') {
+        if (curCh === 'c') {
           curSt = 82
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 82:
-        if (curCh === 'i') {
+        if (curCh === 'h') {
           curSt = 83
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 83:
-        if (curCh === 'n') {
+        if (curCh === 'i') {
           curSt = 84
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 84:
-        if (curCh === 'g') {
+        if (curCh === 'n') {
           curSt = 85
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 85:
-        if (curCh === 'O') {
+        if (curCh === 'g') {
           curSt = 86
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 86:
-        if (curCh === 'v') {
+        if (curCh === 'O') {
           curSt = 87
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 87:
-        if (curCh === 'e') {
+        if (curCh === 'v') {
           curSt = 88
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 88:
-        if (curCh === 'r') {
+        if (curCh === 'e') {
           curSt = 89
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 89:
-        if (curCh === 'l') {
+        if (curCh === 'r') {
           curSt = 90
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 90:
-        if (curCh === 'o') {
+        if (curCh === 'l') {
           curSt = 91
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 91:
-        if (curCh === 'a') {
+        if (curCh === 'o') {
           curSt = 92
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 92:
-        if (curCh === 'd') {
+        if (curCh === 'a') {
           curSt = 93
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 93:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'd') {
+          curSt = 94
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 94:
-        if (curCh === 'E') {
-          curSt = 106
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 95:
-        if (curCh === 'p') {
-          curSt = 96
+        if (curCh === 'E') {
+          curSt = 107
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 96:
-        if (curCh === 'e') {
+        if (curCh === 'p') {
           curSt = 97
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 97:
-        if (curCh === 'M') {
+        if (curCh === 'e') {
           curSt = 98
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 98:
-        if (curCh === 'i') {
+        if (curCh === 'M') {
           curSt = 99
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 99:
-        if (curCh === 's') {
+        if (curCh === 'i') {
           curSt = 100
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 100:
-        if (curCh === 'm') {
+        if (curCh === 's') {
           curSt = 101
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 101:
-        if (curCh === 'a') {
+        if (curCh === 'm') {
           curSt = 102
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 102:
-        if (curCh === 't') {
+        if (curCh === 'a') {
           curSt = 103
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 103:
-        if (curCh === 'c') {
+        if (curCh === 't') {
           curSt = 104
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 104:
-        if (curCh === 'h') {
+        if (curCh === 'c') {
           curSt = 105
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 105:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'h') {
+          curSt = 106
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 106:
-        if (curCh === 'r') {
-          curSt = 107
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
@@ -1067,1003 +1067,1012 @@ export function *lex(input, debug = false) {
           curSt = 108
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 108:
-        if (curCh === 'o') {
+        if (curCh === 'r') {
           curSt = 109
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 109:
-        if (curCh === 'r') {
+        if (curCh === 'o') {
           curSt = 110
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 110:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'r') {
+          curSt = 111
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 111:
-        if (curCh === 'n') {
-          curSt = 112
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 112:
-        if (curCh === 'e') {
+        if (curCh === 'n') {
           curSt = 113
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 113:
-        if (curCh === 'r') {
+        if (curCh === 'e') {
           curSt = 114
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 114:
-        if (curCh === 'a') {
+        if (curCh === 'r') {
           curSt = 115
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 115:
-        if (curCh === 'l') {
+        if (curCh === 'a') {
           curSt = 116
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 116:
-        if (curCh === 'O') {
+        if (curCh === 'l') {
           curSt = 117
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 117:
-        if (curCh === 'v') {
+        if (curCh === 'O') {
           curSt = 118
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 118:
-        if (curCh === 'e') {
+        if (curCh === 'v') {
           curSt = 119
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 119:
-        if (curCh === 'r') {
+        if (curCh === 'e') {
           curSt = 120
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 120:
-        if (curCh === 'f') {
+        if (curCh === 'r') {
           curSt = 121
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 121:
-        if (curCh === 'l') {
+        if (curCh === 'f') {
           curSt = 122
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 122:
-        if (curCh === 'o') {
+        if (curCh === 'l') {
           curSt = 123
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 123:
-        if (curCh === 'w') {
+        if (curCh === 'o') {
           curSt = 124
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 124:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'w') {
+          curSt = 125
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 125:
-        if (curCh === 't') {
-          curSt = 126
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 126:
-        if (curCh === 'e') {
+        if (curCh === 't') {
           curSt = 127
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 127:
-        if (curCh === 'z') {
+        if (curCh === 'e') {
           curSt = 128
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 128:
-        if (curCh === 'O') {
+        if (curCh === 'z') {
           curSt = 129
           continue
-        } else if (curCh === 'U') {
-          curSt = 130
-          continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 129:
-        if (curCh === 'v') {
-          curSt = 139
+        if (curCh === 'O') {
+          curSt = 130
+          continue
+        } else if (curCh === 'U') {
+          curSt = 131
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 130:
-        if (curCh === 'n') {
-          curSt = 131
+        if (curCh === 'v') {
+          curSt = 140
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 131:
-        if (curCh === 'd') {
+        if (curCh === 'n') {
           curSt = 132
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 132:
-        if (curCh === 'e') {
+        if (curCh === 'd') {
           curSt = 133
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 133:
-        if (curCh === 'r') {
+        if (curCh === 'e') {
           curSt = 134
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 134:
-        if (curCh === 'f') {
+        if (curCh === 'r') {
           curSt = 135
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 135:
-        if (curCh === 'l') {
+        if (curCh === 'f') {
           curSt = 136
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 136:
-        if (curCh === 'o') {
+        if (curCh === 'l') {
           curSt = 137
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 137:
-        if (curCh === 'w') {
+        if (curCh === 'o') {
           curSt = 138
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 138:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'w') {
+          curSt = 139
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 139:
-        if (curCh === 'e') {
-          curSt = 140
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 140:
-        if (curCh === 'r') {
+        if (curCh === 'e') {
           curSt = 141
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 141:
-        if (curCh === 'f') {
+        if (curCh === 'r') {
           curSt = 142
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 142:
-        if (curCh === 'l') {
+        if (curCh === 'f') {
           curSt = 143
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 143:
-        if (curCh === 'o') {
+        if (curCh === 'l') {
           curSt = 144
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 144:
-        if (curCh === 'w') {
+        if (curCh === 'o') {
           curSt = 145
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 145:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'w') {
+          curSt = 146
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 146:
-        if (curCh === 'i') {
-          curSt = 147
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 147:
-        if (curCh === 'l') {
+        if (curCh === 'i') {
           curSt = 148
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 148:
-        if (curCh === 'e') {
+        if (curCh === 'l') {
           curSt = 149
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 149:
-        if (curCh === 'd') {
+        if (curCh === 'e') {
           curSt = 150
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 150:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'd') {
+          curSt = 151
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 151:
-        if (curCh === 'r') {
-          curSt = 152
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 152:
-        if (curCh === 'a') {
+        if (curCh === 'r') {
           curSt = 153
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 153:
-        if (curCh === 'm') {
+        if (curCh === 'a') {
           curSt = 154
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 154:
-        if (curCh === 'e') {
+        if (curCh === 'm') {
           curSt = 155
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 155:
-        if (curCh === 't') {
+        if (curCh === 'e') {
           curSt = 156
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 156:
-        if (curCh === 'e') {
+        if (curCh === 't') {
           curSt = 157
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 157:
-        if (curCh === 'r') {
+        if (curCh === 'e') {
           curSt = 158
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 158:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'r') {
+          curSt = 159
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 159:
-        if (curCh === 'l') {
-          curSt = 165
-          continue
-        } else if (curCh === 'n') {
-          curSt = 166
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 160:
-        if (curCh === 'u') {
-          curSt = 161
+        if (curCh === 'l') {
+          curSt = 166
+          continue
+        } else if (curCh === 'n') {
+          curSt = 167
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 161:
-        if (curCh === 'r') {
+        if (curCh === 'u') {
           curSt = 162
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 162:
-        if (curCh === 'c') {
+        if (curCh === 'r') {
           curSt = 163
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 163:
-        if (curCh === 'e') {
+        if (curCh === 'c') {
           curSt = 164
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 164:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'e') {
+          curSt = 165
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 165:
-        if (curCh === 'f') {
-          curSt = 170
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 166:
-        if (curCh === 'd') {
-          curSt = 167
+        if (curCh === 'f') {
+          curSt = 171
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 167:
-        if (curCh === 'e') {
+        if (curCh === 'd') {
           curSt = 168
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 168:
-        if (curCh === 'r') {
+        if (curCh === 'e') {
           curSt = 169
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 169:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'r') {
+          curSt = 170
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 170:
         if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 171:
-        if (curCh === 'w') {
-          curSt = 172
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 172:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'w') {
+          curSt = 173
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 173:
-        if (curCh === 'l') {
-          curSt = 181
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 174:
-        if (curCh === 'g') {
-          curSt = 175
+        if (curCh === 'l') {
+          curSt = 182
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 175:
-        if (curCh === '_') {
+        if (curCh === 'g') {
           curSt = 176
           continue
-        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 176:
-        if (curCh === 'm') {
+        if (curCh === '_') {
           curSt = 177
           continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 177:
-        if (curCh === 'a') {
+        if (curCh === 'm') {
           curSt = 178
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 178:
-        if (curCh === 'p') {
+        if (curCh === 'a') {
           curSt = 179
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 179:
-        if (curCh === 's') {
+        if (curCh === 'p') {
           curSt = 180
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 180:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 's') {
+          curSt = 181
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 181:
-        if (curCh === 'a') {
-          curSt = 182
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 182:
-        if (curCh === 'n') {
+        if (curCh === 'a') {
           curSt = 183
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 183:
-        if (curCh === 'c') {
+        if (curCh === 'n') {
           curSt = 184
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 184:
-        if (curCh === 'e') {
+        if (curCh === 'c') {
           curSt = 185
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 185:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'e') {
+          curSt = 186
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 186:
-        if (curCh === 'o') {
-          curSt = 187
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 187:
-        if (curCh === 'u') {
+        if (curCh === 'o') {
           curSt = 188
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 188:
-        if (curCh === 'n') {
+        if (curCh === 'u') {
           curSt = 189
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 189:
-        if (curCh === 't') {
+        if (curCh === 'n') {
           curSt = 190
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 190:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 't') {
+          curSt = 191
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 191:
-        if (curCh === 't') {
-          curSt = 206
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 192:
-        if (curCh === 'h') {
-          curSt = 193
+        if (curCh === 't') {
+          curSt = 207
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 193:
-        if (curCh === 'e') {
+        if (curCh === 'h') {
           curSt = 194
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 194:
-        if (curCh === 'r') {
+        if (curCh === 'e') {
           curSt = 195
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 195:
-        if (curCh === '_') {
+        if (curCh === 'r') {
           curSt = 196
           continue
-        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 196:
-        if (curCh === 'c') {
+        if (curCh === '_') {
           curSt = 197
           continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 197:
-        if (curCh === 'o') {
+        if (curCh === 'c') {
           curSt = 198
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 198:
-        if (curCh === 'n') {
+        if (curCh === 'o') {
           curSt = 199
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 199:
-        if (curCh === 't') {
+        if (curCh === 'n') {
           curSt = 200
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 200:
-        if (curCh === 'r') {
+        if (curCh === 't') {
           curSt = 201
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 201:
-        if (curCh === 'a') {
+        if (curCh === 'r') {
           curSt = 202
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 202:
-        if (curCh === 'c') {
+        if (curCh === 'a') {
           curSt = 203
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 203:
-        if (curCh === 't') {
+        if (curCh === 'c') {
           curSt = 204
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 204:
-        if (curCh === 's') {
+        if (curCh === 't') {
           curSt = 205
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 205:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 's') {
+          curSt = 206
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 206:
-        if (curCh === 'p') {
-          curSt = 207
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 207:
-        if (curCh === 'u') {
+        if (curCh === 'p') {
           curSt = 208
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 208:
-        if (curCh === 't') {
+        if (curCh === 'u') {
           curSt = 209
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 209:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 't') {
+          curSt = 210
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 210:
-        if (curCh === 'p') {
-          curSt = 211
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 211:
-        if (curCh === 'u') {
+        if (curCh === 'p') {
           curSt = 212
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 212:
-        if (curCh === 't') {
+        if (curCh === 'u') {
           curSt = 213
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 213:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 't') {
+          curSt = 214
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 214:
-        if (curCh === 'd') {
-          curSt = 222
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 215:
-        if (curCh === 'a') {
-          curSt = 216
+        if (curCh === 'd') {
+          curSt = 223
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 216:
-        if (curCh === 'i') {
+        if (curCh === 'a') {
           curSt = 217
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 217:
-        if (curCh === 'n') {
+        if (curCh === 'i') {
           curSt = 218
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 218:
-        if (curCh === '_') {
+        if (curCh === 'n') {
           curSt = 219
           continue
-        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 219:
-        if (curCh === 'i') {
+        if (curCh === '_') {
           curSt = 220
           continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        } else if (curCh === '-' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 220:
-        if (curCh === 'd') {
+        if (curCh === 'i') {
           curSt = 221
           continue
         } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
       case 221:
-        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === 'd') {
+          curSt = 222
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 222:
-        if (curCh === 'e') {
-          curSt = 223
-          continue
-        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+        if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
           continue
         }
         break
       case 223:
+        if (curCh === 'e') {
+          curSt = 224
+          continue
+        } else if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
+          curSt = 32
+          continue
+        }
+        break
+      case 224:
         if (curCh === '-' || curCh === '_' || (curCh >= '0' && curCh <= '9') || (curCh >= 'A' && curCh <= 'Z') || (curCh >= 'a' && curCh <= 'z')) {
-          curSt = 31
+          curSt = 32
           continue
         }
         break
@@ -2080,8 +2089,7 @@ export function *lex(input, debug = false) {
         if (debug) console.log("Skipping state 1: \"" + text + "\"")
         continue
       case 2:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Skipping state 2: \"" + text + "\"")
         continue
       case 3:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2128,12 +2136,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 14:
-        if (debug) console.log("Lexed token underscore: \"" + text + "\"")
-        yield [TokenType.Tok_underscore, text]
-        continue
-      case 15:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 15:
+        if (debug) console.log("Lexed token underscore: \"" + text + "\"")
+        yield [TokenType.Tok_underscore, text]
         continue
       case 16:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2156,50 +2164,50 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 21:
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
+        continue
+      case 22:
         if (debug) console.log("Lexed token semi: \"" + text + "\"")
         yield [TokenType.Tok_semi, null]
         continue
-      case 22:
+      case 23:
         if (debug) console.log("Lexed token colon: \"" + text + "\"")
         yield [TokenType.Tok_colon, null]
         continue
-      case 23:
+      case 24:
         if (debug) console.log("Lexed token comma: \"" + text + "\"")
         yield [TokenType.Tok_comma, null]
         continue
-      case 24:
+      case 25:
         if (debug) console.log("Lexed token lbr: \"" + text + "\"")
         yield [TokenType.Tok_lbr, null]
         continue
-      case 25:
+      case 26:
         if (debug) console.log("Lexed token rbr: \"" + text + "\"")
         yield [TokenType.Tok_rbr, null]
         continue
-      case 26:
+      case 27:
         if (debug) console.log("Lexed token lbrk: \"" + text + "\"")
         yield [TokenType.Tok_lbrk, null]
         continue
-      case 27:
+      case 28:
         if (debug) console.log("Lexed token rbrk: \"" + text + "\"")
         yield [TokenType.Tok_rbrk, null]
         continue
-      case 28:
+      case 29:
         if (debug) console.log("Lexed token lp: \"" + text + "\"")
         yield [TokenType.Tok_lp, text]
         continue
-      case 29:
+      case 30:
         if (debug) console.log("Lexed token rp: \"" + text + "\"")
         yield [TokenType.Tok_rp, text]
-        continue
-      case 31:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
         continue
       case 32:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
         continue
-      case 36:
+      case 33:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
         continue
@@ -2228,12 +2236,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 43:
-        if (debug) console.log("Lexed token stack_elt: \"" + text + "\"")
-        yield [TokenType.Tok_stack_elt, null]
-        continue
-      case 44:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 44:
+        if (debug) console.log("Lexed token stack_elt: \"" + text + "\"")
+        yield [TokenType.Tok_stack_elt, null]
         continue
       case 45:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2272,12 +2280,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 54:
-        if (debug) console.log("Lexed token invalidInstr: \"" + text + "\"")
-        yield [TokenType.Tok_invalidInstr, text]
-        continue
-      case 55:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 55:
+        if (debug) console.log("Lexed token invalidInstr: \"" + text + "\"")
+        yield [TokenType.Tok_invalidInstr, text]
         continue
       case 56:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2296,12 +2304,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 60:
-        if (debug) console.log("Lexed token badType: \"" + text + "\"")
-        yield [TokenType.Tok_badType, text]
-        continue
-      case 61:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 61:
+        if (debug) console.log("Lexed token badType: \"" + text + "\"")
+        yield [TokenType.Tok_badType, text]
         continue
       case 62:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2324,12 +2332,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 67:
-        if (debug) console.log("Lexed token deadCode: \"" + text + "\"")
-        yield [TokenType.Tok_deadCode, text]
-        continue
-      case 68:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 68:
+        if (debug) console.log("Lexed token deadCode: \"" + text + "\"")
+        yield [TokenType.Tok_deadCode, text]
         continue
       case 69:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2360,12 +2368,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 76:
-        if (debug) console.log("Lexed token valueError: \"" + text + "\"")
-        yield [TokenType.Tok_valueError, text]
-        continue
-      case 77:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 77:
+        if (debug) console.log("Lexed token valueError: \"" + text + "\"")
+        yield [TokenType.Tok_valueError, text]
         continue
       case 78:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2428,12 +2436,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 93:
-        if (debug) console.log("Lexed token noMatchingOverload: \"" + text + "\"")
-        yield [TokenType.Tok_noMatchingOverload, text]
-        continue
-      case 94:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 94:
+        if (debug) console.log("Lexed token noMatchingOverload: \"" + text + "\"")
+        yield [TokenType.Tok_noMatchingOverload, text]
         continue
       case 95:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2476,12 +2484,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 105:
-        if (debug) console.log("Lexed token typeMismatch: \"" + text + "\"")
-        yield [TokenType.Tok_typeMismatch, text]
-        continue
-      case 106:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 106:
+        if (debug) console.log("Lexed token typeMismatch: \"" + text + "\"")
+        yield [TokenType.Tok_typeMismatch, text]
         continue
       case 107:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2496,12 +2504,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 110:
-        if (debug) console.log("Lexed token tcError: \"" + text + "\"")
-        yield [TokenType.Tok_tcError, text]
-        continue
-      case 111:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 111:
+        if (debug) console.log("Lexed token tcError: \"" + text + "\"")
+        yield [TokenType.Tok_tcError, text]
         continue
       case 112:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2552,12 +2560,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 124:
-        if (debug) console.log("Lexed token generalOverflow: \"" + text + "\"")
-        yield [TokenType.Tok_generalOverflow, text]
-        continue
-      case 125:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 125:
+        if (debug) console.log("Lexed token generalOverflow: \"" + text + "\"")
+        yield [TokenType.Tok_generalOverflow, text]
         continue
       case 126:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2608,12 +2616,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 138:
-        if (debug) console.log("Lexed token mutezUnderflow: \"" + text + "\"")
-        yield [TokenType.Tok_mutezUnderflow, text]
-        continue
-      case 139:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 139:
+        if (debug) console.log("Lexed token mutezUnderflow: \"" + text + "\"")
+        yield [TokenType.Tok_mutezUnderflow, text]
         continue
       case 140:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2636,12 +2644,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 145:
-        if (debug) console.log("Lexed token mutezOverflow: \"" + text + "\"")
-        yield [TokenType.Tok_mutezOverflow, text]
-        continue
-      case 146:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 146:
+        if (debug) console.log("Lexed token mutezOverflow: \"" + text + "\"")
+        yield [TokenType.Tok_mutezOverflow, text]
         continue
       case 147:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2656,12 +2664,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 150:
-        if (debug) console.log("Lexed token failed: \"" + text + "\"")
-        yield [TokenType.Tok_failed, text]
-        continue
-      case 151:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 151:
+        if (debug) console.log("Lexed token failed: \"" + text + "\"")
+        yield [TokenType.Tok_failed, text]
         continue
       case 152:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2688,12 +2696,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 158:
-        if (debug) console.log("Lexed token parameter: \"" + text + "\"")
-        yield [TokenType.Tok_parameter, text]
-        continue
-      case 159:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 159:
+        if (debug) console.log("Lexed token parameter: \"" + text + "\"")
+        yield [TokenType.Tok_parameter, text]
         continue
       case 160:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2712,12 +2720,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 164:
-        if (debug) console.log("Lexed token source: \"" + text + "\"")
-        yield [TokenType.Tok_source, text]
-        continue
-      case 165:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 165:
+        if (debug) console.log("Lexed token source: \"" + text + "\"")
+        yield [TokenType.Tok_source, text]
         continue
       case 166:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2732,24 +2740,24 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 169:
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
+        continue
+      case 170:
         if (debug) console.log("Lexed token sender: \"" + text + "\"")
         yield [TokenType.Tok_sender, text]
         continue
-      case 170:
+      case 171:
         if (debug) console.log("Lexed token self: \"" + text + "\"")
         yield [TokenType.Tok_self, text]
         continue
-      case 171:
+      case 172:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
-        continue
-      case 172:
-        if (debug) console.log("Lexed token now: \"" + text + "\"")
-        yield [TokenType.Tok_now, text]
         continue
       case 173:
-        if (debug) console.log("Lexed token word: \"" + text + "\"")
-        yield [TokenType.Tok_word,  text ]
+        if (debug) console.log("Lexed token now: \"" + text + "\"")
+        yield [TokenType.Tok_now, text]
         continue
       case 174:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2776,12 +2784,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 180:
-        if (debug) console.log("Lexed token big_maps: \"" + text + "\"")
-        yield [TokenType.Tok_big_maps, text]
-        continue
-      case 181:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 181:
+        if (debug) console.log("Lexed token big_maps: \"" + text + "\"")
+        yield [TokenType.Tok_big_maps, text]
         continue
       case 182:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2796,12 +2804,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 185:
-        if (debug) console.log("Lexed token balance: \"" + text + "\"")
-        yield [TokenType.Tok_balance, text]
-        continue
-      case 186:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 186:
+        if (debug) console.log("Lexed token balance: \"" + text + "\"")
+        yield [TokenType.Tok_balance, text]
         continue
       case 187:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2816,12 +2824,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 190:
-        if (debug) console.log("Lexed token amount: \"" + text + "\"")
-        yield [TokenType.Tok_amount, text]
-        continue
-      case 191:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 191:
+        if (debug) console.log("Lexed token amount: \"" + text + "\"")
+        yield [TokenType.Tok_amount, text]
         continue
       case 192:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2876,12 +2884,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 205:
-        if (debug) console.log("Lexed token other_contracts: \"" + text + "\"")
-        yield [TokenType.Tok_other_contracts, text]
-        continue
-      case 206:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 206:
+        if (debug) console.log("Lexed token other_contracts: \"" + text + "\"")
+        yield [TokenType.Tok_other_contracts, text]
         continue
       case 207:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2892,12 +2900,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 209:
-        if (debug) console.log("Lexed token output: \"" + text + "\"")
-        yield [TokenType.Tok_output, text]
-        continue
-      case 210:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 210:
+        if (debug) console.log("Lexed token output: \"" + text + "\"")
+        yield [TokenType.Tok_output, text]
         continue
       case 211:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2908,12 +2916,12 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 213:
-        if (debug) console.log("Lexed token input: \"" + text + "\"")
-        yield [TokenType.Tok_input, text]
-        continue
-      case 214:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
+        continue
+      case 214:
+        if (debug) console.log("Lexed token input: \"" + text + "\"")
+        yield [TokenType.Tok_input, text]
         continue
       case 215:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
@@ -2940,14 +2948,18 @@ export function *lex(input, debug = false) {
         yield [TokenType.Tok_word,  text ]
         continue
       case 221:
-        if (debug) console.log("Lexed token chain_id: \"" + text + "\"")
-        yield [TokenType.Tok_chain_id, text]
-        continue
-      case 222:
         if (debug) console.log("Lexed token word: \"" + text + "\"")
         yield [TokenType.Tok_word,  text ]
         continue
+      case 222:
+        if (debug) console.log("Lexed token chain_id: \"" + text + "\"")
+        yield [TokenType.Tok_chain_id, text]
+        continue
       case 223:
+        if (debug) console.log("Lexed token word: \"" + text + "\"")
+        yield [TokenType.Tok_word,  text ]
+        continue
+      case 224:
         if (debug) console.log("Lexed token code: \"" + text + "\"")
         yield [TokenType.Tok_code, text]
         continue

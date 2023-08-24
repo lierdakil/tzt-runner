@@ -1,4 +1,5 @@
 /[ \t\r\n]/
+/#[^\n]*/
 code /code/ {text}
 input /input/ {text}
 output /output/ {text}
