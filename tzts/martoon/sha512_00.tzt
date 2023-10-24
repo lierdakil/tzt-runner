@@ -1,0 +1,3 @@
+code { SHA3 } ;
+input { Stack_elt bytes 0x } ;
+output { Stack_elt bytes 0xeaf5e2637e4084251edd1e16efad94991c59c02b1adcec5c680c80233a914906 }

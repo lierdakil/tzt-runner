@@ -1,0 +1,3 @@
+code { EMPTY_MAP operation nat } ;
+input { } ;
+output (StaticError (NoMatchingOverload { EMPTY_MAP operation nat }))

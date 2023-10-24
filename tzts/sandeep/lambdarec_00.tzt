@@ -1,0 +1,3 @@
+code { LAMBDA_REC nat nat { PUSH nat 1; ADD; DUP; PUSH nat 10; COMPARE; GT; IF { EXEC } {DIP {DROP}}}; SWAP; EXEC };
+input { Stack_elt nat 1 };
+output { Stack_elt nat 10 };

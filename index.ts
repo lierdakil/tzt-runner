@@ -15,11 +15,12 @@ type Err =
   | { class: "MutezOverflow"; i: string; j: string }
   | { class: "MutezUnderflow"; i: string; j: string }
   | { class: "GeneralOverflow"; i: string; j: string }
-  | { class: "TCError"; detail: TCError };
+  | { class: "StaticError"; detail: TCError };
 
 type TCError =
   | null
   | { class: "TypeMismatch"; l: string; r: string }
+  | { class: "StackMismatch"; l: string[]; r: string[] }
   | { class: "NoMatchingOverload"; instr: string; stack: StackElt[] }
   | { class: "ValueError"; type: string; value: string }
   | { class: "DeadCode"; instr: string }
@@ -339,7 +340,7 @@ async function process(fn: string) {
         case "Failed":
           expected_error_line = `script reached FAILWITH instruction with ${out_err.val}`;
           break;
-        case "TCError": {
+        case "StaticError": {
           const { detail } = out_err;
           switch (detail?.class) {
             case undefined:
@@ -355,11 +356,19 @@ async function process(fn: string) {
                   break;
                 case "DIP":
                 case "DUP":
+                case "LOOP":
                   // bit of a strange case, too
                   expected_error_line = [
                     args.length > 0
                       ? `wrong stack type for instruction ${detail.instr}: [ ${args[0]} : ... ]`
                       : `wrong stack type for instruction ${detail.instr}: []`,
+                    `wrong stack type for instruction ${detail.instr}: [ ${args.join(' : ')} ]`,
+                  ];
+                  break;
+                case "COMPARE":
+                  expected_error_line = [
+                    `comparable type expected.Type ${args[0]} is not comparable.`,
+                    `wrong stack type for instruction COMPARE: [ ${args.join(' : ')} ]`
                   ];
                   break;
                 default:
@@ -384,6 +393,11 @@ async function process(fn: string) {
               break;
             case "TypeMismatch":
               expected_error_line = `Type ${detail.l} is not compatible with type ${detail.r}`;
+              break;
+            case "StackMismatch":
+              expected_error_line = `two branches don't end with the same stack type:
+  - first stack type: [ ${detail.l.join(" : ")} ],
+  - other stack type: [ ${detail.r.join(" : ")} ].`.replace(/\s+/g, " ");
               break;
             case "DeadCode": {
               expected_error_line =
@@ -424,6 +438,9 @@ async function process(fn: string) {
               ) {
                 expected_error_line =
                   "big_map or sapling_state type not expected";
+              } else if (ty.includes("operation")) {
+                expected_error_line =
+                  "operation type forbidden in parameter, storage and constants";
               } else {
                 expected_error_line = [
                   `${detail.type} type not expected`,

@@ -1,0 +1,3 @@
+code { CHECK_SIGNATURE } ;
+input { Stack_elt key "edpku4BBS8x6M7kZZwgoJmpKKPNfVCqSkeVypJ8yuKPC7Fw6qGXxBr" } ;
+output (StaticError (NoMatchingOverload _ _))

@@ -1,0 +1,3 @@
+code { ITER { FAILWITH } } ;
+input { Stack_elt (big_map int int) { } } ;
+output (StaticError (NoMatchingOverload (ITER { FAILWITH }) {big_map int int}))

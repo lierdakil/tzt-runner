@@ -1,0 +1,3 @@
+code { KECCAK } ;
+input { Stack_elt bytes 0x1234 } ;
+output { Stack_elt bytes 0x56570de287d73cd1cb6092bb8fdee6173974955fdef345ae579ee9f475ea7432 }

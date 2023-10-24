@@ -1,0 +1,4 @@
+code { GET_AND_UPDATE } ;
+input { Stack_elt string "hello" ; Stack_elt string "greetings"
+      ; Stack_elt (big_map string string) { Elt "hello" "hi" } } ;
+output (StaticError (NoMatchingOverload GET_AND_UPDATE {string ; string ; big_map string string}))

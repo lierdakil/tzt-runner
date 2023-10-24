@@ -1,0 +1,4 @@
+code { GET_AND_UPDATE } ;
+input { Stack_elt string "hello" ; Stack_elt (option string) (Some "greetings")
+      ; Stack_elt (big_map string string) { Elt "hello" "hi" } } ;
+output { Stack_elt (option string) (Some "hi"); Stack_elt (big_map string string) { Elt "hello" "greetings" } }

@@ -1,3 +1,3 @@
 code { SWAP } ;
 input { };
-output (TCError (NoMatchingOverload SWAP []));
+output (StaticError (NoMatchingOverload SWAP {}));

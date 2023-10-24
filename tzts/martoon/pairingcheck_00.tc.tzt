@@ -1,0 +1,3 @@
+code { PAIRING_CHECK } ;
+input { Stack_elt (pair int int) (Pair 1 1) } ;
+output (StaticError (NoMatchingOverload _ _))

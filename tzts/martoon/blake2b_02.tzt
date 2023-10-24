@@ -1,0 +1,3 @@
+code { BLAKE2B; BLAKE2B; BLAKE2B } ;
+input { Stack_elt bytes 0x } ;
+output { Stack_elt bytes 0xc1cd56a19c4c1ab2ee5303c42048872786c7314f42a156946563125c9faa5a1c }

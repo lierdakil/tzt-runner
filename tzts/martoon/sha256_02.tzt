@@ -1,0 +1,3 @@
+code { SHA256; SHA256; SHA256 } ;
+input { Stack_elt bytes 0x } ;
+output { Stack_elt bytes 0xaa6ac2d4961882f42a345c7615f4133dde8e6d6e7c1b6b40ae4ff6ee52c393d0 }

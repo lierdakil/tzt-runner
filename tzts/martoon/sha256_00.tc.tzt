@@ -1,0 +1,3 @@
+code { SHA256 } ;
+input { Stack_elt string "abc" } ;
+output (StaticError (NoMatchingOverload _ _))

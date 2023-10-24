@@ -17,9 +17,10 @@ failed /Failed/ {text}
 mutezOverflow /MutezOverflow/ {text}
 mutezUnderflow /MutezUnderflow/ {text}
 generalOverflow /GeneralOverflow/ {text}
-tcError /TCError/ {text}
+tcError /StaticError/ {text}
 underscore /_/ {text}
 typeMismatch /TypeMismatch/ {text}
+stackMismatch /StackMismatch/ {text}
 noMatchingOverload /NoMatchingOverload/ {text}
 valueError /ValueError/ {text}
 deadCode /DeadCode/ {text}
@@ -31,8 +32,6 @@ colon /:/
 comma /,/
 lbr  /{/
 rbr  /}/
-lbrk  /\[/
-rbrk  /\]/
 lp /\(/ {text}
 rp /\)/ {text}
 word /[_a-zA-Z0-9\-]+|"([^\\"]|\\.)*"/ { text }
@@ -78,7 +77,8 @@ Err
 TCError
   : underscore { null }
   | typeMismatch Type Type { { class: _1, l: _2, r: _3 } }
-  | noMatchingOverload word lbrk StackType rbrk { { class: _1, instr: _2, stack: _4 } }
+  | stackMismatch lbr StackType rbr lbr StackType rbr { { class: _1, l: _3, r: _6 } }
+  | noMatchingOverload word lbr StackType rbr { { class: _1, instr: _2, stack: _4 } }
   | valueError Type Value { { class: _1, type: _2, value: _3 } }
   | deadCode word { { class: _1, instr: _2 } }
   | invalidInstr word { { class: _1, instr: _2 } }
@@ -134,6 +134,7 @@ AnyWord
   | tcError { _1 }
   | underscore { _1 }
   | typeMismatch { _1 }
+  | stackMismatch { _1 }
   | noMatchingOverload { _1 }
   | valueError { _1 }
   | deadCode { _1 }
@@ -148,14 +149,9 @@ Stack
   ;
 
 StackType
-  : PType StackTypeSep StackType { [_1].concat(_3) }
+  : PType semi StackType { [_1].concat(_3) }
   | PType { [_1] }
   | { [] }
-  ;
-
-StackTypeSep
-  : comma
-  | colon
   ;
 
 StackElt

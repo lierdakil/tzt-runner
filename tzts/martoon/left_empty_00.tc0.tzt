@@ -1,0 +1,3 @@
+code { LEFT int } ;
+input { } ;
+output (StaticError (NoMatchingOverload (LEFT int) {}))

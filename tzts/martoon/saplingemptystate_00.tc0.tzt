@@ -1,0 +1,3 @@
+code { SAPLING_EMPTY_STATE 2 } ;
+input { } ;
+output (StaticError (InvalidInstr (SAPLING_EMPTY_STATE 2)))

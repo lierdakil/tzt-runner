@@ -1,0 +1,3 @@
+code { SAPLING_VERIFY_UPDATE } ;
+input { } ;
+output (StaticError (NoMatchingOverload _ _))

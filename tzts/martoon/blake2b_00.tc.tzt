@@ -1,0 +1,3 @@
+code { BLAKE2B } ;
+input { Stack_elt string "abc" } ;
+output (StaticError (NoMatchingOverload _ _))

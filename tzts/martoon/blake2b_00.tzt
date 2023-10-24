@@ -1,0 +1,3 @@
+code { BLAKE2B } ;
+input { Stack_elt bytes 0x } ;
+output { Stack_elt bytes 0x0e5751c026e543b2e8ab2eb06099daa1d1e5df47778f7787faab45cdf12fe3a8 }

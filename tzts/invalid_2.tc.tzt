@@ -1,3 +1,3 @@
 code { DUP 0 };
 input { Stack_elt unit Unit };
-output (TCError (InvalidInstr DUP));
+output (StaticError (InvalidInstr DUP));
